@@ -1,0 +1,27 @@
+# Ignore the supplied dataset
+data/
+*.parquet
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Generated outputs
+outputs/
+
+# Environment variables
+.env
