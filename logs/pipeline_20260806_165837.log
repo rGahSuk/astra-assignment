@@ -1,0 +1,366 @@
+2026-08-06 16:58:37 | INFO | root | main | ============================================================
+2026-08-06 16:58:37 | INFO | root | main | ASTRA OVERNIGHT RETURN PIPELINE
+2026-08-06 16:58:37 | INFO | root | main | ============================================================
+2026-08-06 16:58:37 | INFO | root | main | Project root: /Users/kushagr/Desktop/astra-assignment
+2026-08-06 16:58:37 | INFO | root | main | Config: /private/tmp/astra_config_rebuild_logging.yaml
+2026-08-06 16:58:37 | INFO | root | main | Python version: 3.13.7
+2026-08-06 16:58:37 | INFO | root | main | Seed: 42
+2026-08-06 16:58:37 | INFO | root | main | Cache enabled: True
+2026-08-06 16:58:37 | INFO | root | main | Cache rebuild: True
+2026-08-06 16:58:37 | INFO | root | main | Output directory: /Users/kushagr/Desktop/astra-assignment/final_outputs
+2026-08-06 16:58:37 | INFO | root | main | Log file: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_165837.log
+2026-08-06 16:58:37 | INFO | root | main | ============================================================
+2026-08-06 16:58:37 | DEBUG | root | main | Package versions: {"lightgbm": "4.7.0", "numpy": "2.3.5", "pandas": "2.3.3", "pyarrow": "25.0.0", "python": "3.13.7", "scipy": "1.18.0", "sklearn": "1.9.0"}
+2026-08-06 16:58:37 | INFO | root | log_stage | Starting: Pipeline
+2026-08-06 16:58:37 | INFO | root | load_or_build_panel | Cache rebuild requested; ignoring existing cache
+2026-08-06 16:58:37 | INFO | root | log_stage | Starting: Loading daily data
+2026-08-06 16:58:37 | INFO | src.data | load_all_daily_data | Daily directory: /Users/kushagr/Desktop/astra-assignment/data/daily
+2026-08-06 16:58:37 | INFO | src.data | load_all_daily_data | Found 208 daily files
+2026-08-06 16:58:37 | INFO | src.data | load_all_daily_data | Daily symbols span: first=360ONE last=ZYDUSLIFE
+2026-08-06 16:58:37 | INFO | src.data | load_all_daily_data | Loaded 301,483 daily rows
+2026-08-06 16:58:37 | INFO | src.data | load_all_daily_data | Daily range: 2020-06-01 to 2026-06-30
+2026-08-06 16:58:37 | INFO | src.data | validate_daily_data | Daily duplicate symbol-date rows: 0
+2026-08-06 16:58:37 | INFO | src.data | validate_daily_data | Daily non-positive price cells: 0
+2026-08-06 16:58:37 | INFO | src.data | validate_daily_data | Daily negative-volume rows: 0
+2026-08-06 16:58:37 | INFO | src.data | validate_daily_data | Daily high-below-low rows: 0
+2026-08-06 16:58:37 | INFO | root | log_stage | Completed: Loading daily data | elapsed=0.40s
+2026-08-06 16:58:37 | INFO | root | log_stage | Starting: Validating minute universe
+2026-08-06 16:58:37 | INFO | src.data | list_minute_files | Minute directory: /Users/kushagr/Desktop/astra-assignment/data/minute
+2026-08-06 16:58:37 | INFO | src.data | list_minute_files | Found 208 minute files
+2026-08-06 16:58:37 | INFO | src.data | list_minute_files | Minute symbols span: first=360ONE last=ZYDUSLIFE
+2026-08-06 16:58:37 | INFO | src.data | validate_minute_universe | Minute symbol count: 208
+2026-08-06 16:58:37 | INFO | src.data | validate_minute_universe | Daily/minute symbol universes match
+2026-08-06 16:58:37 | INFO | root | log_stage | Completed: Validating minute universe | elapsed=0.01s
+2026-08-06 16:58:37 | INFO | root | log_stage | Starting: Constructing targets
+2026-08-06 16:58:37 | INFO | src.data | construct_targets | Target rows retained: 301,275
+2026-08-06 16:58:37 | INFO | src.data | construct_targets | Rows removed without next session: 208
+2026-08-06 16:58:37 | INFO | root | log_stage | Completed: Constructing targets | elapsed=0.05s
+2026-08-06 16:58:37 | INFO | root | log_stage | Starting: Building feature panel
+2026-08-06 16:58:37 | INFO | src.features | create_daily_features | Daily features | count=13 | input_rows=301,275
+2026-08-06 16:58:38 | INFO | src.features | create_daily_features | Daily features complete | output_rows=301,275 | symbols=208
+2026-08-06 16:58:38 | INFO | src.features | build_minute_feature_panel | Minute-derived features | feature_count=6 | symbols=208
+2026-08-06 16:58:39 | INFO | src.features | build_minute_feature_panel | Minute features [1/208] 360ONE | sessions=1,509 | incomplete_sessions=535 | symbol_elapsed=1.38s | elapsed=1.38s | ETA=4m 45s
+2026-08-06 16:58:40 | INFO | src.features | build_minute_feature_panel | Minute features [2/208] ABB | sessions=1,509 | incomplete_sessions=62 | symbol_elapsed=1.32s | elapsed=2.70s | ETA=4m 38s
+2026-08-06 16:58:42 | INFO | src.features | build_minute_feature_panel | Minute features [3/208] ABCAPITAL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.33s | elapsed=4.03s | ETA=4m 35s
+2026-08-06 16:58:43 | INFO | src.features | build_minute_feature_panel | Minute features [4/208] ADANIENSOL | sessions=1,509 | incomplete_sessions=75 | symbol_elapsed=1.40s | elapsed=5.43s | ETA=4m 37s
+2026-08-06 16:58:44 | INFO | src.features | build_minute_feature_panel | Minute features [5/208] ADANIENT | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=6.75s | ETA=4m 34s
+2026-08-06 16:58:46 | INFO | src.features | build_minute_feature_panel | Minute features [6/208] ADANIGREEN | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.33s | elapsed=8.08s | ETA=4m 32s
+2026-08-06 16:58:47 | INFO | src.features | build_minute_feature_panel | Minute features [7/208] ADANIPORTS | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.33s | elapsed=9.42s | ETA=4m 30s
+2026-08-06 16:58:48 | INFO | src.features | build_minute_feature_panel | Minute features [8/208] ADANIPOWER | sessions=1,509 | incomplete_sessions=23 | symbol_elapsed=1.31s | elapsed=10.73s | ETA=4m 28s
+2026-08-06 16:58:50 | INFO | src.features | build_minute_feature_panel | Minute features [9/208] ALKEM | sessions=1,509 | incomplete_sessions=23 | symbol_elapsed=1.31s | elapsed=12.04s | ETA=4m 26s
+2026-08-06 16:58:51 | INFO | src.features | build_minute_feature_panel | Minute features [10/208] AMBER | sessions=1,509 | incomplete_sessions=134 | symbol_elapsed=1.32s | elapsed=13.36s | ETA=4m 25s
+2026-08-06 16:58:52 | INFO | src.features | build_minute_feature_panel | Minute features [11/208] AMBUJACEM | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.33s | elapsed=14.69s | ETA=4m 23s
+2026-08-06 16:58:53 | INFO | src.features | build_minute_feature_panel | Minute features [12/208] ANGELONE | sessions=1,420 | incomplete_sessions=45 | symbol_elapsed=1.25s | elapsed=15.93s | ETA=4m 20s
+2026-08-06 16:58:55 | INFO | src.features | build_minute_feature_panel | Minute features [13/208] APLAPOLLO | sessions=1,509 | incomplete_sessions=84 | symbol_elapsed=1.34s | elapsed=17.27s | ETA=4m 19s
+2026-08-06 16:58:56 | INFO | src.features | build_minute_feature_panel | Minute features [14/208] APOLLOHOSP | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.33s | elapsed=18.60s | ETA=4m 18s
+2026-08-06 16:58:58 | INFO | src.features | build_minute_feature_panel | Minute features [15/208] ASHOKLEY | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.36s | elapsed=19.96s | ETA=4m 17s
+2026-08-06 16:58:59 | INFO | src.features | build_minute_feature_panel | Minute features [16/208] ASIANPAINT | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.44s | elapsed=21.40s | ETA=4m 17s
+2026-08-06 16:59:00 | INFO | src.features | build_minute_feature_panel | Minute features [17/208] ASTRAL | sessions=1,509 | incomplete_sessions=48 | symbol_elapsed=1.41s | elapsed=22.81s | ETA=4m 16s
+2026-08-06 16:59:02 | INFO | src.features | build_minute_feature_panel | Minute features [18/208] AUBANK | sessions=1,509 | incomplete_sessions=22 | symbol_elapsed=1.41s | elapsed=24.22s | ETA=4m 16s
+2026-08-06 16:59:03 | INFO | src.features | build_minute_feature_panel | Minute features [19/208] AUROPHARMA | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=25.58s | ETA=4m 14s
+2026-08-06 16:59:05 | INFO | src.features | build_minute_feature_panel | Minute features [20/208] AXISBANK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.41s | elapsed=26.99s | ETA=4m 14s
+2026-08-06 16:59:06 | INFO | src.features | build_minute_feature_panel | Minute features [21/208] BAJAJ-AUTO | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.41s | elapsed=28.40s | ETA=4m 13s
+2026-08-06 16:59:07 | INFO | src.features | build_minute_feature_panel | Minute features [22/208] BAJAJFINSV | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.44s | elapsed=29.84s | ETA=4m 12s
+2026-08-06 16:59:09 | INFO | src.features | build_minute_feature_panel | Minute features [23/208] BAJAJHLDNG | sessions=1,509 | incomplete_sessions=226 | symbol_elapsed=1.45s | elapsed=31.29s | ETA=4m 12s
+2026-08-06 16:59:10 | INFO | src.features | build_minute_feature_panel | Minute features [24/208] BAJFINANCE | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=32.63s | ETA=4m 10s
+2026-08-06 16:59:12 | INFO | src.features | build_minute_feature_panel | Minute features [25/208] BANDHANBNK | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.33s | elapsed=33.96s | ETA=4m 9s
+2026-08-06 16:59:13 | INFO | src.features | build_minute_feature_panel | Minute features [26/208] BANKBARODA | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.32s | elapsed=35.28s | ETA=4m 7s
+2026-08-06 16:59:14 | INFO | src.features | build_minute_feature_panel | Minute features [27/208] BANKINDIA | sessions=1,509 | incomplete_sessions=20 | symbol_elapsed=1.32s | elapsed=36.60s | ETA=4m 5s
+2026-08-06 16:59:16 | INFO | src.features | build_minute_feature_panel | Minute features [28/208] BDL | sessions=1,509 | incomplete_sessions=61 | symbol_elapsed=1.35s | elapsed=37.95s | ETA=4m 4s
+2026-08-06 16:59:17 | INFO | src.features | build_minute_feature_panel | Minute features [29/208] BEL | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=39.27s | ETA=4m 2s
+2026-08-06 16:59:18 | INFO | src.features | build_minute_feature_panel | Minute features [30/208] BHARATFORG | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=40.59s | ETA=4m 1s
+2026-08-06 16:59:19 | INFO | src.features | build_minute_feature_panel | Minute features [31/208] BHARTIARTL | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.32s | elapsed=41.91s | ETA=3m 59s
+2026-08-06 16:59:21 | INFO | src.features | build_minute_feature_panel | Minute features [32/208] BHEL | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=43.23s | ETA=3m 58s
+2026-08-06 16:59:22 | INFO | src.features | build_minute_feature_panel | Minute features [33/208] BIOCON | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.32s | elapsed=44.56s | ETA=3m 56s
+2026-08-06 16:59:23 | INFO | src.features | build_minute_feature_panel | Minute features [34/208] BLUESTARCO | sessions=1,509 | incomplete_sessions=309 | symbol_elapsed=1.32s | elapsed=45.88s | ETA=3m 55s
+2026-08-06 16:59:25 | INFO | src.features | build_minute_feature_panel | Minute features [35/208] BOSCHLTD | sessions=1,509 | incomplete_sessions=23 | symbol_elapsed=1.36s | elapsed=47.24s | ETA=3m 54s
+2026-08-06 16:59:26 | INFO | src.features | build_minute_feature_panel | Minute features [36/208] BPCL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=48.61s | ETA=3m 52s
+2026-08-06 16:59:27 | INFO | src.features | build_minute_feature_panel | Minute features [37/208] BRITANNIA | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=49.93s | ETA=3m 51s
+2026-08-06 16:59:29 | INFO | src.features | build_minute_feature_panel | Minute features [38/208] BSE | sessions=1,509 | incomplete_sessions=28 | symbol_elapsed=1.31s | elapsed=51.23s | ETA=3m 49s
+2026-08-06 16:59:30 | INFO | src.features | build_minute_feature_panel | Minute features [39/208] CAMS | sessions=1,420 | incomplete_sessions=19 | symbol_elapsed=1.24s | elapsed=52.48s | ETA=3m 47s
+2026-08-06 16:59:31 | INFO | src.features | build_minute_feature_panel | Minute features [40/208] CANBK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=53.79s | ETA=3m 46s
+2026-08-06 16:59:33 | INFO | src.features | build_minute_feature_panel | Minute features [41/208] CDSL | sessions=1,509 | incomplete_sessions=22 | symbol_elapsed=1.31s | elapsed=55.11s | ETA=3m 44s
+2026-08-06 16:59:34 | INFO | src.features | build_minute_feature_panel | Minute features [42/208] CGPOWER | sessions=1,509 | incomplete_sessions=129 | symbol_elapsed=1.31s | elapsed=56.42s | ETA=3m 43s
+2026-08-06 16:59:35 | INFO | src.features | build_minute_feature_panel | Minute features [43/208] CHOLAFIN | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=57.76s | ETA=3m 42s
+2026-08-06 16:59:37 | INFO | src.features | build_minute_feature_panel | Minute features [44/208] CIPLA | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.30s | elapsed=59.07s | ETA=3m 40s
+2026-08-06 16:59:38 | INFO | src.features | build_minute_feature_panel | Minute features [45/208] COALINDIA | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.31s | elapsed=1m 0s | ETA=3m 39s
+2026-08-06 16:59:39 | INFO | src.features | build_minute_feature_panel | Minute features [46/208] COCHINSHIP | sessions=1,509 | incomplete_sessions=141 | symbol_elapsed=1.32s | elapsed=1m 2s | ETA=3m 37s
+2026-08-06 16:59:41 | INFO | src.features | build_minute_feature_panel | Minute features [47/208] COFORGE | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.36s | elapsed=1m 3s | ETA=3m 36s
+2026-08-06 16:59:42 | INFO | src.features | build_minute_feature_panel | Minute features [48/208] COLPAL | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.48s | elapsed=1m 5s | ETA=3m 35s
+2026-08-06 16:59:43 | INFO | src.features | build_minute_feature_panel | Minute features [49/208] CONCOR | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=1m 6s | ETA=3m 34s
+2026-08-06 16:59:45 | INFO | src.features | build_minute_feature_panel | Minute features [50/208] CROMPTON | sessions=1,509 | incomplete_sessions=24 | symbol_elapsed=1.31s | elapsed=1m 7s | ETA=3m 32s
+2026-08-06 16:59:46 | INFO | src.features | build_minute_feature_panel | Minute features [51/208] CUMMINSIND | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=1m 8s | ETA=3m 31s
+2026-08-06 16:59:47 | INFO | src.features | build_minute_feature_panel | Minute features [52/208] DABUR | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.32s | elapsed=1m 10s | ETA=3m 29s
+2026-08-06 16:59:49 | INFO | src.features | build_minute_feature_panel | Minute features [53/208] DALBHARAT | sessions=1,509 | incomplete_sessions=87 | symbol_elapsed=1.31s | elapsed=1m 11s | ETA=3m 28s
+2026-08-06 16:59:50 | INFO | src.features | build_minute_feature_panel | Minute features [54/208] DELHIVERY | sessions=1,015 | incomplete_sessions=36 | symbol_elapsed=0.89s | elapsed=1m 12s | ETA=3m 25s
+2026-08-06 16:59:51 | INFO | src.features | build_minute_feature_panel | Minute features [55/208] DIVISLAB | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.31s | elapsed=1m 13s | ETA=3m 24s
+2026-08-06 16:59:52 | INFO | src.features | build_minute_feature_panel | Minute features [56/208] DIXON | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.32s | elapsed=1m 15s | ETA=3m 23s
+2026-08-06 16:59:54 | INFO | src.features | build_minute_feature_panel | Minute features [57/208] DLF | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=1m 16s | ETA=3m 21s
+2026-08-06 16:59:55 | INFO | src.features | build_minute_feature_panel | Minute features [58/208] DMART | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.35s | elapsed=1m 17s | ETA=3m 20s
+2026-08-06 16:59:56 | INFO | src.features | build_minute_feature_panel | Minute features [59/208] DRREDDY | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=1m 19s | ETA=3m 19s
+2026-08-06 16:59:58 | INFO | src.features | build_minute_feature_panel | Minute features [60/208] EICHERMOT | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=1m 20s | ETA=3m 17s
+2026-08-06 16:59:59 | INFO | src.features | build_minute_feature_panel | Minute features [61/208] ETERNAL | sessions=1,221 | incomplete_sessions=14 | symbol_elapsed=1.17s | elapsed=1m 21s | ETA=3m 15s
+2026-08-06 17:00:00 | INFO | src.features | build_minute_feature_panel | Minute features [62/208] FEDERALBNK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.40s | elapsed=1m 23s | ETA=3m 14s
+2026-08-06 17:00:01 | INFO | src.features | build_minute_feature_panel | Minute features [63/208] FORCEMOT | sessions=1,434 | incomplete_sessions=542 | symbol_elapsed=1.37s | elapsed=1m 24s | ETA=3m 13s
+2026-08-06 17:00:03 | INFO | src.features | build_minute_feature_panel | Minute features [64/208] FORTIS | sessions=1,509 | incomplete_sessions=60 | symbol_elapsed=1.40s | elapsed=1m 25s | ETA=3m 12s
+2026-08-06 17:00:04 | INFO | src.features | build_minute_feature_panel | Minute features [65/208] GAIL | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.35s | elapsed=1m 27s | ETA=3m 11s
+2026-08-06 17:00:06 | INFO | src.features | build_minute_feature_panel | Minute features [66/208] GLENMARK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.33s | elapsed=1m 28s | ETA=3m 9s
+2026-08-06 17:00:07 | INFO | src.features | build_minute_feature_panel | Minute features [67/208] GMRAIRPORT | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.38s | elapsed=1m 29s | ETA=3m 8s
+2026-08-06 17:00:08 | INFO | src.features | build_minute_feature_panel | Minute features [68/208] GODFRYPHLP | sessions=1,509 | incomplete_sessions=404 | symbol_elapsed=1.33s | elapsed=1m 31s | ETA=3m 7s
+2026-08-06 17:00:10 | INFO | src.features | build_minute_feature_panel | Minute features [69/208] GODREJCP | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.45s | elapsed=1m 32s | ETA=3m 6s
+2026-08-06 17:00:11 | INFO | src.features | build_minute_feature_panel | Minute features [70/208] GODREJPROP | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.32s | elapsed=1m 33s | ETA=3m 4s
+2026-08-06 17:00:12 | INFO | src.features | build_minute_feature_panel | Minute features [71/208] GRASIM | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=1m 35s | ETA=3m 3s
+2026-08-06 17:00:14 | INFO | src.features | build_minute_feature_panel | Minute features [72/208] GVT&D | sessions=1,509 | incomplete_sessions=900 | symbol_elapsed=1.31s | elapsed=1m 36s | ETA=3m 2s
+2026-08-06 17:00:15 | INFO | src.features | build_minute_feature_panel | Minute features [73/208] HAL | sessions=1,509 | incomplete_sessions=33 | symbol_elapsed=1.34s | elapsed=1m 37s | ETA=3m 0s
+2026-08-06 17:00:16 | INFO | src.features | build_minute_feature_panel | Minute features [74/208] HAVELLS | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.32s | elapsed=1m 39s | ETA=2m 59s
+2026-08-06 17:00:18 | INFO | src.features | build_minute_feature_panel | Minute features [75/208] HCLTECH | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.47s | elapsed=1m 40s | ETA=2m 58s
+2026-08-06 17:00:19 | INFO | src.features | build_minute_feature_panel | Minute features [76/208] HDFCAMC | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.38s | elapsed=1m 42s | ETA=2m 56s
+2026-08-06 17:00:21 | INFO | src.features | build_minute_feature_panel | Minute features [77/208] HDFCBANK | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.45s | elapsed=1m 43s | ETA=2m 55s
+2026-08-06 17:00:22 | INFO | src.features | build_minute_feature_panel | Minute features [78/208] HDFCLIFE | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=1m 44s | ETA=2m 54s
+2026-08-06 17:00:23 | INFO | src.features | build_minute_feature_panel | Minute features [79/208] HEROMOTOCO | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=1m 46s | ETA=2m 53s
+2026-08-06 17:00:25 | INFO | src.features | build_minute_feature_panel | Minute features [80/208] HINDALCO | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.36s | elapsed=1m 47s | ETA=2m 51s
+2026-08-06 17:00:26 | INFO | src.features | build_minute_feature_panel | Minute features [81/208] HINDPETRO | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=1m 48s | ETA=2m 50s
+2026-08-06 17:00:27 | INFO | src.features | build_minute_feature_panel | Minute features [82/208] HINDUNILVR | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.38s | elapsed=1m 50s | ETA=2m 49s
+2026-08-06 17:00:29 | INFO | src.features | build_minute_feature_panel | Minute features [83/208] HINDZINC | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.36s | elapsed=1m 51s | ETA=2m 47s
+2026-08-06 17:00:29 | INFO | src.features | build_minute_feature_panel | Minute features [84/208] HYUNDAI | sessions=416 | incomplete_sessions=4 | symbol_elapsed=0.38s | elapsed=1m 52s | ETA=2m 45s
+2026-08-06 17:00:30 | INFO | src.features | build_minute_feature_panel | Minute features [85/208] ICICIBANK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=1m 53s | ETA=2m 43s
+2026-08-06 17:00:32 | INFO | src.features | build_minute_feature_panel | Minute features [86/208] ICICIGI | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.35s | elapsed=1m 54s | ETA=2m 42s
+2026-08-06 17:00:33 | INFO | src.features | build_minute_feature_panel | Minute features [87/208] ICICIPRULI | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=1m 56s | ETA=2m 41s
+2026-08-06 17:00:35 | INFO | src.features | build_minute_feature_panel | Minute features [88/208] IDEA | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.37s | elapsed=1m 57s | ETA=2m 40s
+2026-08-06 17:00:36 | INFO | src.features | build_minute_feature_panel | Minute features [89/208] IDFCFIRSTB | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=1m 58s | ETA=2m 38s
+2026-08-06 17:00:37 | INFO | src.features | build_minute_feature_panel | Minute features [90/208] IEX | sessions=1,509 | incomplete_sessions=29 | symbol_elapsed=1.35s | elapsed=1m 60s | ETA=2m 37s
+2026-08-06 17:00:39 | INFO | src.features | build_minute_feature_panel | Minute features [91/208] INDHOTEL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.34s | elapsed=2m 1s | ETA=2m 36s
+2026-08-06 17:00:40 | INFO | src.features | build_minute_feature_panel | Minute features [92/208] INDIANB | sessions=1,509 | incomplete_sessions=36 | symbol_elapsed=1.35s | elapsed=2m 2s | ETA=2m 34s
+2026-08-06 17:00:41 | INFO | src.features | build_minute_feature_panel | Minute features [93/208] INDIGO | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=2m 4s | ETA=2m 33s
+2026-08-06 17:00:43 | INFO | src.features | build_minute_feature_panel | Minute features [94/208] INDUSINDBK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=2m 5s | ETA=2m 32s
+2026-08-06 17:00:44 | INFO | src.features | build_minute_feature_panel | Minute features [95/208] INDUSTOWER | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.37s | elapsed=2m 6s | ETA=2m 30s
+2026-08-06 17:00:45 | INFO | src.features | build_minute_feature_panel | Minute features [96/208] INFY | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.35s | elapsed=2m 8s | ETA=2m 29s
+2026-08-06 17:00:47 | INFO | src.features | build_minute_feature_panel | Minute features [97/208] INOXWIND | sessions=1,509 | incomplete_sessions=574 | symbol_elapsed=1.34s | elapsed=2m 9s | ETA=2m 28s
+2026-08-06 17:00:48 | INFO | src.features | build_minute_feature_panel | Minute features [98/208] IOC | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=2m 10s | ETA=2m 26s
+2026-08-06 17:00:49 | INFO | src.features | build_minute_feature_panel | Minute features [99/208] IREDA | sessions=639 | incomplete_sessions=8 | symbol_elapsed=0.58s | elapsed=2m 11s | ETA=2m 24s
+2026-08-06 17:00:50 | INFO | src.features | build_minute_feature_panel | Minute features [100/208] IRFC | sessions=1,339 | incomplete_sessions=15 | symbol_elapsed=1.19s | elapsed=2m 12s | ETA=2m 23s
+2026-08-06 17:00:51 | INFO | src.features | build_minute_feature_panel | Minute features [101/208] ITC | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=2m 14s | ETA=2m 22s
+2026-08-06 17:00:53 | INFO | src.features | build_minute_feature_panel | Minute features [102/208] JINDALSTEL | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.45s | elapsed=2m 15s | ETA=2m 20s
+2026-08-06 17:00:53 | INFO | src.features | build_minute_feature_panel | Minute features [103/208] JIOFIN | sessions=706 | incomplete_sessions=7 | symbol_elapsed=0.67s | elapsed=2m 16s | ETA=2m 18s
+2026-08-06 17:00:55 | INFO | src.features | build_minute_feature_panel | Minute features [104/208] JSWENERGY | sessions=1,509 | incomplete_sessions=51 | symbol_elapsed=1.34s | elapsed=2m 17s | ETA=2m 17s
+2026-08-06 17:00:56 | INFO | src.features | build_minute_feature_panel | Minute features [105/208] JSWSTEEL | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=2m 18s | ETA=2m 16s
+2026-08-06 17:00:57 | INFO | src.features | build_minute_feature_panel | Minute features [106/208] JUBLFOOD | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=2m 20s | ETA=2m 14s
+2026-08-06 17:00:58 | INFO | src.features | build_minute_feature_panel | Minute features [107/208] KALYANKJIL | sessions=1,300 | incomplete_sessions=55 | symbol_elapsed=1.16s | elapsed=2m 21s | ETA=2m 13s
+2026-08-06 17:00:59 | INFO | src.features | build_minute_feature_panel | Minute features [108/208] KAYNES | sessions=891 | incomplete_sessions=24 | symbol_elapsed=0.79s | elapsed=2m 22s | ETA=2m 11s
+2026-08-06 17:01:01 | INFO | src.features | build_minute_feature_panel | Minute features [109/208] KEI | sessions=1,509 | incomplete_sessions=86 | symbol_elapsed=1.35s | elapsed=2m 23s | ETA=2m 10s
+2026-08-06 17:01:01 | INFO | src.features | build_minute_feature_panel | Minute features [110/208] KFINTECH | sessions=864 | incomplete_sessions=65 | symbol_elapsed=0.82s | elapsed=2m 24s | ETA=2m 8s
+2026-08-06 17:01:03 | INFO | src.features | build_minute_feature_panel | Minute features [111/208] KOTAKBANK | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=2m 25s | ETA=2m 7s
+2026-08-06 17:01:04 | INFO | src.features | build_minute_feature_panel | Minute features [112/208] KPITTECH | sessions=1,509 | incomplete_sessions=76 | symbol_elapsed=1.34s | elapsed=2m 27s | ETA=2m 6s
+2026-08-06 17:01:06 | INFO | src.features | build_minute_feature_panel | Minute features [113/208] LAURUSLABS | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=2m 28s | ETA=2m 4s
+2026-08-06 17:01:07 | INFO | src.features | build_minute_feature_panel | Minute features [114/208] LICHSGFIN | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=2m 29s | ETA=2m 3s
+2026-08-06 17:01:08 | INFO | src.features | build_minute_feature_panel | Minute features [115/208] LICI | sessions=1,020 | incomplete_sessions=11 | symbol_elapsed=0.91s | elapsed=2m 30s | ETA=2m 1s
+2026-08-06 17:01:09 | INFO | src.features | build_minute_feature_panel | Minute features [116/208] LODHA | sessions=1,287 | incomplete_sessions=76 | symbol_elapsed=1.15s | elapsed=2m 31s | ETA=2m 0s
+2026-08-06 17:01:10 | INFO | src.features | build_minute_feature_panel | Minute features [117/208] LT | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.37s | elapsed=2m 33s | ETA=1m 59s
+2026-08-06 17:01:12 | INFO | src.features | build_minute_feature_panel | Minute features [118/208] LTF | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.40s | elapsed=2m 34s | ETA=1m 58s
+2026-08-06 17:01:13 | INFO | src.features | build_minute_feature_panel | Minute features [119/208] LTM | sessions=1,509 | incomplete_sessions=20 | symbol_elapsed=1.45s | elapsed=2m 36s | ETA=1m 56s
+2026-08-06 17:01:14 | INFO | src.features | build_minute_feature_panel | Minute features [120/208] LUPIN | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.32s | elapsed=2m 37s | ETA=1m 55s
+2026-08-06 17:01:16 | INFO | src.features | build_minute_feature_panel | Minute features [121/208] M&M | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.32s | elapsed=2m 38s | ETA=1m 54s
+2026-08-06 17:01:17 | INFO | src.features | build_minute_feature_panel | Minute features [122/208] MANAPPURAM | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=2m 40s | ETA=1m 52s
+2026-08-06 17:01:18 | INFO | src.features | build_minute_feature_panel | Minute features [123/208] MANKIND | sessions=778 | incomplete_sessions=11 | symbol_elapsed=0.73s | elapsed=2m 40s | ETA=1m 51s
+2026-08-06 17:01:19 | INFO | src.features | build_minute_feature_panel | Minute features [124/208] MARICO | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.41s | elapsed=2m 42s | ETA=1m 50s
+2026-08-06 17:01:21 | INFO | src.features | build_minute_feature_panel | Minute features [125/208] MARUTI | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.33s | elapsed=2m 43s | ETA=1m 48s
+2026-08-06 17:01:22 | INFO | src.features | build_minute_feature_panel | Minute features [126/208] MAXHEALTH | sessions=1,450 | incomplete_sessions=74 | symbol_elapsed=1.31s | elapsed=2m 44s | ETA=1m 47s
+2026-08-06 17:01:23 | INFO | src.features | build_minute_feature_panel | Minute features [127/208] MAZDOCK | sessions=1,415 | incomplete_sessions=72 | symbol_elapsed=1.34s | elapsed=2m 46s | ETA=1m 46s
+2026-08-06 17:01:25 | INFO | src.features | build_minute_feature_panel | Minute features [128/208] MCX | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.31s | elapsed=2m 47s | ETA=1m 44s
+2026-08-06 17:01:26 | INFO | src.features | build_minute_feature_panel | Minute features [129/208] MFSL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.34s | elapsed=2m 48s | ETA=1m 43s
+2026-08-06 17:01:27 | INFO | src.features | build_minute_feature_panel | Minute features [130/208] MOTHERSON | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.41s | elapsed=2m 50s | ETA=1m 42s
+2026-08-06 17:01:29 | INFO | src.features | build_minute_feature_panel | Minute features [131/208] MOTILALOFS | sessions=1,509 | incomplete_sessions=287 | symbol_elapsed=1.52s | elapsed=2m 51s | ETA=1m 41s
+2026-08-06 17:01:30 | INFO | src.features | build_minute_feature_panel | Minute features [132/208] MPHASIS | sessions=1,509 | incomplete_sessions=24 | symbol_elapsed=1.31s | elapsed=2m 53s | ETA=1m 39s
+2026-08-06 17:01:31 | INFO | src.features | build_minute_feature_panel | Minute features [133/208] MUTHOOTFIN | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.31s | elapsed=2m 54s | ETA=1m 38s
+2026-08-06 17:01:33 | INFO | src.features | build_minute_feature_panel | Minute features [134/208] NAM-INDIA | sessions=1,509 | incomplete_sessions=58 | symbol_elapsed=1.42s | elapsed=2m 55s | ETA=1m 37s
+2026-08-06 17:01:34 | INFO | src.features | build_minute_feature_panel | Minute features [135/208] NATIONALUM | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.42s | elapsed=2m 57s | ETA=1m 36s
+2026-08-06 17:01:36 | INFO | src.features | build_minute_feature_panel | Minute features [136/208] NAUKRI | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=2m 58s | ETA=1m 34s
+2026-08-06 17:01:37 | INFO | src.features | build_minute_feature_panel | Minute features [137/208] NBCC | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.33s | elapsed=2m 59s | ETA=1m 33s
+2026-08-06 17:01:38 | INFO | src.features | build_minute_feature_panel | Minute features [138/208] NESTLEIND | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=3m 1s | ETA=1m 32s
+2026-08-06 17:01:40 | INFO | src.features | build_minute_feature_panel | Minute features [139/208] NHPC | sessions=1,509 | incomplete_sessions=24 | symbol_elapsed=1.31s | elapsed=3m 2s | ETA=1m 30s
+2026-08-06 17:01:41 | INFO | src.features | build_minute_feature_panel | Minute features [140/208] NMDC | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.38s | elapsed=3m 3s | ETA=1m 29s
+2026-08-06 17:01:42 | INFO | src.features | build_minute_feature_panel | Minute features [141/208] NTPC | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.42s | elapsed=3m 5s | ETA=1m 28s
+2026-08-06 17:01:43 | INFO | src.features | build_minute_feature_panel | Minute features [142/208] NYKAA | sessions=1,147 | incomplete_sessions=13 | symbol_elapsed=1.04s | elapsed=3m 6s | ETA=1m 26s
+2026-08-06 17:01:45 | INFO | src.features | build_minute_feature_panel | Minute features [143/208] OBEROIRLTY | sessions=1,509 | incomplete_sessions=78 | symbol_elapsed=1.39s | elapsed=3m 7s | ETA=1m 25s
+2026-08-06 17:01:46 | INFO | src.features | build_minute_feature_panel | Minute features [144/208] OFSS | sessions=1,509 | incomplete_sessions=84 | symbol_elapsed=1.36s | elapsed=3m 9s | ETA=1m 24s
+2026-08-06 17:01:48 | INFO | src.features | build_minute_feature_panel | Minute features [145/208] OIL | sessions=1,509 | incomplete_sessions=29 | symbol_elapsed=1.37s | elapsed=3m 10s | ETA=1m 23s
+2026-08-06 17:01:49 | INFO | src.features | build_minute_feature_panel | Minute features [146/208] ONGC | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=3m 11s | ETA=1m 21s
+2026-08-06 17:01:50 | INFO | src.features | build_minute_feature_panel | Minute features [147/208] PAGEIND | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.34s | elapsed=3m 13s | ETA=1m 20s
+2026-08-06 17:01:52 | INFO | src.features | build_minute_feature_panel | Minute features [148/208] PATANJALI | sessions=1,509 | incomplete_sessions=349 | symbol_elapsed=1.35s | elapsed=3m 14s | ETA=1m 19s
+2026-08-06 17:01:53 | INFO | src.features | build_minute_feature_panel | Minute features [149/208] PAYTM | sessions=1,141 | incomplete_sessions=13 | symbol_elapsed=1.05s | elapsed=3m 15s | ETA=1m 17s
+2026-08-06 17:01:54 | INFO | src.features | build_minute_feature_panel | Minute features [150/208] PERSISTENT | sessions=1,509 | incomplete_sessions=47 | symbol_elapsed=1.35s | elapsed=3m 16s | ETA=1m 16s
+2026-08-06 17:01:55 | INFO | src.features | build_minute_feature_panel | Minute features [151/208] PETRONET | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.34s | elapsed=3m 18s | ETA=1m 15s
+2026-08-06 17:01:57 | INFO | src.features | build_minute_feature_panel | Minute features [152/208] PFC | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.36s | elapsed=3m 19s | ETA=1m 13s
+2026-08-06 17:01:58 | INFO | src.features | build_minute_feature_panel | Minute features [153/208] PGEL | sessions=1,509 | incomplete_sessions=741 | symbol_elapsed=1.33s | elapsed=3m 20s | ETA=1m 12s
+2026-08-06 17:01:59 | INFO | src.features | build_minute_feature_panel | Minute features [154/208] PHOENIXLTD | sessions=1,509 | incomplete_sessions=181 | symbol_elapsed=1.34s | elapsed=3m 22s | ETA=1m 11s
+2026-08-06 17:02:01 | INFO | src.features | build_minute_feature_panel | Minute features [155/208] PIDILITIND | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=3m 23s | ETA=1m 9s
+2026-08-06 17:02:02 | INFO | src.features | build_minute_feature_panel | Minute features [156/208] PIIND | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=3m 25s | ETA=1m 8s
+2026-08-06 17:02:04 | INFO | src.features | build_minute_feature_panel | Minute features [157/208] PNB | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.41s | elapsed=3m 26s | ETA=1m 7s
+2026-08-06 17:02:05 | INFO | src.features | build_minute_feature_panel | Minute features [158/208] PNBHOUSING | sessions=1,509 | incomplete_sessions=232 | symbol_elapsed=1.38s | elapsed=3m 27s | ETA=1m 6s
+2026-08-06 17:02:06 | INFO | src.features | build_minute_feature_panel | Minute features [159/208] POLICYBZR | sessions=1,144 | incomplete_sessions=14 | symbol_elapsed=1.02s | elapsed=3m 28s | ETA=1m 4s
+2026-08-06 17:02:07 | INFO | src.features | build_minute_feature_panel | Minute features [160/208] POLYCAB | sessions=1,509 | incomplete_sessions=20 | symbol_elapsed=1.35s | elapsed=3m 30s | ETA=1m 3s
+2026-08-06 17:02:09 | INFO | src.features | build_minute_feature_panel | Minute features [161/208] POWERGRID | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.36s | elapsed=3m 31s | ETA=1m 2s
+2026-08-06 17:02:10 | INFO | src.features | build_minute_feature_panel | Minute features [162/208] POWERINDIA | sessions=1,509 | incomplete_sessions=440 | symbol_elapsed=1.35s | elapsed=3m 32s | ETA=1m 0s
+2026-08-06 17:02:10 | INFO | src.features | build_minute_feature_panel | Minute features [163/208] PREMIERENE | sessions=450 | incomplete_sessions=4 | symbol_elapsed=0.41s | elapsed=3m 33s | ETA=58.76s
+2026-08-06 17:02:12 | INFO | src.features | build_minute_feature_panel | Minute features [164/208] PRESTIGE | sessions=1,509 | incomplete_sessions=83 | symbol_elapsed=1.35s | elapsed=3m 34s | ETA=57.46s
+2026-08-06 17:02:13 | INFO | src.features | build_minute_feature_panel | Minute features [165/208] RADICO | sessions=1,509 | incomplete_sessions=84 | symbol_elapsed=1.38s | elapsed=3m 36s | ETA=56.17s
+2026-08-06 17:02:14 | INFO | src.features | build_minute_feature_panel | Minute features [166/208] RBLBANK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=3m 37s | ETA=54.88s
+2026-08-06 17:02:16 | INFO | src.features | build_minute_feature_panel | Minute features [167/208] RECLTD | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=3m 38s | ETA=53.58s
+2026-08-06 17:02:17 | INFO | src.features | build_minute_feature_panel | Minute features [168/208] RELIANCE | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.42s | elapsed=3m 40s | ETA=52.30s
+2026-08-06 17:02:19 | INFO | src.features | build_minute_feature_panel | Minute features [169/208] RVNL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.34s | elapsed=3m 41s | ETA=51.00s
+2026-08-06 17:02:20 | INFO | src.features | build_minute_feature_panel | Minute features [170/208] SAIL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=3m 42s | ETA=49.70s
+2026-08-06 17:02:21 | INFO | src.features | build_minute_feature_panel | Minute features [171/208] SBICARD | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=3m 44s | ETA=48.40s
+2026-08-06 17:02:23 | INFO | src.features | build_minute_feature_panel | Minute features [172/208] SBILIFE | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=3m 45s | ETA=47.10s
+2026-08-06 17:02:24 | INFO | src.features | build_minute_feature_panel | Minute features [173/208] SBIN | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.35s | elapsed=3m 46s | ETA=45.80s
+2026-08-06 17:02:25 | INFO | src.features | build_minute_feature_panel | Minute features [174/208] SHREECEM | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.36s | elapsed=3m 48s | ETA=44.50s
+2026-08-06 17:02:27 | INFO | src.features | build_minute_feature_panel | Minute features [175/208] SHRIRAMFIN | sessions=1,509 | incomplete_sessions=16 | symbol_elapsed=1.34s | elapsed=3m 49s | ETA=43.20s
+2026-08-06 17:02:28 | INFO | src.features | build_minute_feature_panel | Minute features [176/208] SIEMENS | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=3m 50s | ETA=41.90s
+2026-08-06 17:02:29 | INFO | src.features | build_minute_feature_panel | Minute features [177/208] SOLARINDS | sessions=1,509 | incomplete_sessions=408 | symbol_elapsed=1.38s | elapsed=3m 52s | ETA=40.60s
+2026-08-06 17:02:30 | INFO | src.features | build_minute_feature_panel | Minute features [178/208] SONACOMS | sessions=1,241 | incomplete_sessions=15 | symbol_elapsed=1.10s | elapsed=3m 53s | ETA=39.26s
+2026-08-06 17:02:32 | INFO | src.features | build_minute_feature_panel | Minute features [179/208] SRF | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.38s | elapsed=3m 54s | ETA=37.96s
+2026-08-06 17:02:33 | INFO | src.features | build_minute_feature_panel | Minute features [180/208] SUNPHARMA | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=3m 56s | ETA=36.66s
+2026-08-06 17:02:35 | INFO | src.features | build_minute_feature_panel | Minute features [181/208] SUPREMEIND | sessions=1,509 | incomplete_sessions=115 | symbol_elapsed=1.35s | elapsed=3m 57s | ETA=35.35s
+2026-08-06 17:02:36 | INFO | src.features | build_minute_feature_panel | Minute features [182/208] SUZLON | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.35s | elapsed=3m 58s | ETA=34.05s
+2026-08-06 17:02:36 | INFO | src.features | build_minute_feature_panel | Minute features [183/208] SWIGGY | sessions=400 | incomplete_sessions=3 | symbol_elapsed=0.37s | elapsed=3m 59s | ETA=32.61s
+2026-08-06 17:02:38 | INFO | src.features | build_minute_feature_panel | Minute features [184/208] TATACONSUM | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.37s | elapsed=4m 0s | ETA=31.32s
+2026-08-06 17:02:39 | INFO | src.features | build_minute_feature_panel | Minute features [185/208] TATAELXSI | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=4m 1s | ETA=30.02s
+2026-08-06 17:02:40 | INFO | src.features | build_minute_feature_panel | Minute features [186/208] TATAPOWER | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=4m 3s | ETA=28.72s
+2026-08-06 17:02:42 | INFO | src.features | build_minute_feature_panel | Minute features [187/208] TATASTEEL | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=4m 4s | ETA=27.42s
+2026-08-06 17:02:43 | INFO | src.features | build_minute_feature_panel | Minute features [188/208] TCS | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=4m 5s | ETA=26.12s
+2026-08-06 17:02:44 | INFO | src.features | build_minute_feature_panel | Minute features [189/208] TECHM | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=4m 7s | ETA=24.81s
+2026-08-06 17:02:46 | INFO | src.features | build_minute_feature_panel | Minute features [190/208] TIINDIA | sessions=1,509 | incomplete_sessions=220 | symbol_elapsed=1.35s | elapsed=4m 8s | ETA=23.51s
+2026-08-06 17:02:47 | INFO | src.features | build_minute_feature_panel | Minute features [191/208] TITAN | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.35s | elapsed=4m 10s | ETA=22.21s
+2026-08-06 17:02:48 | INFO | src.features | build_minute_feature_panel | Minute features [192/208] TMPV | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=4m 11s | ETA=20.91s
+2026-08-06 17:02:50 | INFO | src.features | build_minute_feature_panel | Minute features [193/208] TORNTPHARM | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.37s | elapsed=4m 12s | ETA=19.61s
+2026-08-06 17:02:51 | INFO | src.features | build_minute_feature_panel | Minute features [194/208] TRENT | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.60s | elapsed=4m 14s | ETA=18.32s
+2026-08-06 17:02:53 | INFO | src.features | build_minute_feature_panel | Minute features [195/208] TVSMOTOR | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.66s | elapsed=4m 16s | ETA=17.03s
+2026-08-06 17:02:55 | INFO | src.features | build_minute_feature_panel | Minute features [196/208] ULTRACEMCO | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.43s | elapsed=4m 17s | ETA=15.73s
+2026-08-06 17:02:56 | INFO | src.features | build_minute_feature_panel | Minute features [197/208] UNIONBANK | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.48s | elapsed=4m 18s | ETA=14.43s
+2026-08-06 17:02:57 | INFO | src.features | build_minute_feature_panel | Minute features [198/208] UNITDSPR | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.42s | elapsed=4m 20s | ETA=13.12s
+2026-08-06 17:02:59 | INFO | src.features | build_minute_feature_panel | Minute features [199/208] UNOMINDA | sessions=1,509 | incomplete_sessions=88 | symbol_elapsed=1.36s | elapsed=4m 21s | ETA=11.81s
+2026-08-06 17:03:00 | INFO | src.features | build_minute_feature_panel | Minute features [200/208] UPL | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.40s | elapsed=4m 23s | ETA=10.50s
+2026-08-06 17:03:02 | INFO | src.features | build_minute_feature_panel | Minute features [201/208] VBL | sessions=1,509 | incomplete_sessions=46 | symbol_elapsed=1.59s | elapsed=4m 24s | ETA=9.20s
+2026-08-06 17:03:03 | INFO | src.features | build_minute_feature_panel | Minute features [202/208] VEDL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.37s | elapsed=4m 26s | ETA=7.89s
+2026-08-06 17:03:03 | INFO | src.features | build_minute_feature_panel | Minute features [203/208] VMM | sessions=377 | incomplete_sessions=3 | symbol_elapsed=0.35s | elapsed=4m 26s | ETA=6.55s
+2026-08-06 17:03:05 | INFO | src.features | build_minute_feature_panel | Minute features [204/208] VOLTAS | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.35s | elapsed=4m 27s | ETA=5.24s
+2026-08-06 17:03:05 | INFO | src.features | build_minute_feature_panel | Minute features [205/208] WAAREEENER | sessions=412 | incomplete_sessions=5 | symbol_elapsed=0.38s | elapsed=4m 28s | ETA=3.92s
+2026-08-06 17:03:07 | INFO | src.features | build_minute_feature_panel | Minute features [206/208] WIPRO | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.33s | elapsed=4m 29s | ETA=2.61s
+2026-08-06 17:03:08 | INFO | src.features | build_minute_feature_panel | Minute features [207/208] YESBANK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.37s | elapsed=4m 30s | ETA=1.31s
+2026-08-06 17:03:09 | INFO | src.features | build_minute_feature_panel | Minute features [208/208] ZYDUSLIFE | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=4m 32s | ETA=0.00s
+2026-08-06 17:03:09 | INFO | src.features | build_minute_feature_panel | Minute-derived features complete | rows=301,074 | zero_volume_bars=1,119,589 | incomplete_sessions=11,432
+2026-08-06 17:03:09 | WARNING | src.features | build_minute_feature_panel | Found 1,119,589 zero-volume minute bars across 208 symbols
+2026-08-06 17:03:09 | INFO | src.features | add_cross_sectional_features | Cross-sectional features | count=6 | input_rows=301,275 | dates=1,510
+2026-08-06 17:03:10 | INFO | src.features | add_cross_sectional_features | Cross-sectional features complete | output_rows=301,275
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | Final modelling panel | shape=(301,275, 52) | symbols=208 | date_range=2020-06-01 to 2026-06-29 | duplicates=0 | direction_features=26 | magnitude_candidate_columns=49
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | Top feature missingness:
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | rolling_beta_to_universe_60d: 8,320
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | return_20d: 4,160
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | daily_volatility_20d: 4,160
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | overnight_std_20d: 4,160
+2026-08-06 17:03:10 | INFO | src.features | build_feature_panel | gap_mean_20d: 4,160
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | Chronological split complete
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | train | rows=186,555 | dates=955 | start=2020-06-01 | end=2024-03-28
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | embargo | rows=2,055 | dates=10
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | valid | rows=54,009 | dates=263 | start=2024-04-08 | end=2025-04-30
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | test | rows=58,656 | dates=282 | start=2025-05-09 | end=2026-06-29
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | Embargo checks passed
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | Split integrity checks passed
+2026-08-06 17:03:10 | INFO | src.data | apply_chronological_splits | No date overlap found
+2026-08-06 17:03:10 | INFO | root | log_stage | Completed: Building feature panel | elapsed=4m 33s
+2026-08-06 17:03:11 | INFO | root | load_or_build_panel | Saved processed panel: /Users/kushagr/Desktop/astra-assignment/outputs/processed_data/model_features_with_splits_v1.parquet | Rows: 301,275 | File size: 78.7 MB
+2026-08-06 17:03:11 | INFO | root | log_stage | Starting: Validation benchmark reproduction
+2026-08-06 17:03:11 | INFO | root | run_validation_checks | Running validation benchmark reproduction
+2026-08-06 17:03:11 | INFO | root | run_validation_checks | Validation direction warm-up rows | train=182,495 | valid=53,909
+2026-08-06 17:03:11 | INFO | root | run_validation_checks | Training validation direction model | rows=182,495 | features=26 | categorical_features=1 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 17:03:11 | INFO | root | run_validation_checks | Validation direction parameters | {"bagging_fraction": 0.8, "bagging_freq": 1, "feature_fraction": 0.6, "learning_rate": 0.05, "min_child_samples": 100, "n_estimators": 1000, "n_jobs": -1, "num_leaves": 31, "objective": "binary", "random_state": 42, "verbosity": -1}
+2026-08-06 17:03:18 | INFO | root | run_validation_checks | Validation direction prediction summary | probability_mean=0.725173 | probability_std=0.152156 | probability_min=0.061273 | probability_max=0.993161 | predicted_up_fraction=0.768369 | hit_rate=0.650893
+2026-08-06 17:03:18 | INFO | src.models | fit_validation_magnitude_model | Training validation magnitude model | rows=182,495 | valid_rows=53,909 | features=46 | categorical_features=1
+2026-08-06 17:03:18 | INFO | src.models | fit_validation_magnitude_model | Validation magnitude target summary | train_mean=0.415661 | valid_mean=0.399411
+2026-08-06 17:03:20 | INFO | src.models | fit_validation_magnitude_model | Magnitude early stopping selected iteration: 76
+2026-08-06 17:03:20 | INFO | src.models | run_shadow_workflow | Training shadow direction model | rows=182,495 | features=26 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 17:03:27 | INFO | src.models | run_shadow_workflow | Shadow direction validation correctness rate: 0.650893
+2026-08-06 17:03:27 | INFO | src.models | run_shadow_workflow | Training shadow magnitude model | rows=182,495 | features=46
+2026-08-06 17:03:28 | INFO | src.models | run_shadow_workflow | Shadow magnitude validation absolute-error summary | mean=0.466684 | median=0.306214 | max=33.783224
+2026-08-06 17:03:31 | INFO | root | log_benchmark_result | direction_score | observed=0.294817 | reference=0.294817 | delta=+0.000000 | tolerance=0.005000 | PASS
+2026-08-06 17:03:31 | INFO | root | log_benchmark_result | magnitude_score | observed=0.252307 | reference=0.254340 | delta=-0.002033 | tolerance=0.005000 | PASS
+2026-08-06 17:03:31 | INFO | root | log_benchmark_result | rank_ic | observed=0.245040 | reference=0.245931 | delta=-0.000891 | tolerance=0.010000 | PASS
+2026-08-06 17:03:31 | WARNING | root | log_benchmark_result | conf_direction_score | observed=0.302190 | reference=0.268893 | delta=+0.033297 | tolerance=0.010000 | WARN
+2026-08-06 17:03:31 | INFO | root | log_benchmark_result | conf_magnitude_spearman | observed=0.301064 | reference=0.299122 | delta=+0.001942 | tolerance=0.020000 | PASS
+2026-08-06 17:03:31 | INFO | root | run_validation_checks | Magnitude best iteration | observed=76 | reference=84 | delta=-8 | status=WARN
+2026-08-06 17:03:31 | INFO | root | log_stage | Completed: Validation benchmark reproduction | elapsed=20.07s
+2026-08-06 17:03:31 | INFO | root | log_stage | Starting: Shadow-model workflow
+2026-08-06 17:03:31 | INFO | src.models | run_shadow_workflow | Training shadow direction model | rows=182,495 | features=26 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 17:03:38 | INFO | src.models | run_shadow_workflow | Shadow direction validation correctness rate: 0.650893
+2026-08-06 17:03:38 | INFO | src.models | run_shadow_workflow | Training shadow magnitude model | rows=182,495 | features=46
+2026-08-06 17:03:39 | INFO | src.models | run_shadow_workflow | Shadow magnitude validation absolute-error summary | mean=0.466684 | median=0.306214 | max=33.783224
+2026-08-06 17:03:39 | INFO | root | log_stage | Completed: Shadow-model workflow | elapsed=8.38s
+2026-08-06 17:03:39 | INFO | root | log_stage | Starting: Final primary-model fitting and scoring
+2026-08-06 17:03:39 | INFO | src.models | fit_final_primary_models | Training final direction model | rows=236,404 | features=26 | categorical_features=1 | positive_target_fraction=0.7222 | threshold=0.64
+2026-08-06 17:03:49 | INFO | src.models | fit_final_primary_models | Training final magnitude model | rows=236,404 | features=46 | selected_tree_count=84
+2026-08-06 17:03:51 | INFO | src.models | fit_final_primary_models | Primary model scoring summary | scored_rows=295,060 | predicted_up_fraction=0.729509 | mean_pred_magnitude_pct=0.455374
+2026-08-06 17:03:51 | INFO | root | log_stage | Completed: Final primary-model fitting and scoring | elapsed=11.59s
+2026-08-06 17:03:51 | INFO | root | log_stage | Starting: Final confidence-model fitting and scoring
+2026-08-06 17:03:51 | INFO | src.models | fit_final_confidence_models | Direction confidence setup | correctness_rate=0.650893 | rows=53,909
+2026-08-06 17:03:51 | INFO | src.models | fit_final_confidence_models | Training direction confidence model | rows=53,909 | feature_count=15
+2026-08-06 17:03:51 | INFO | src.models | fit_final_confidence_models | Direction confidence output summary | mean=0.673336 | min=0.500001 | max=0.999992
+2026-08-06 17:03:51 | INFO | src.models | fit_final_confidence_models | Magnitude confidence setup | abs_error_mean=0.466684 | abs_error_median=0.306214 | abs_error_max=33.783224
+2026-08-06 17:03:51 | INFO | src.models | fit_final_confidence_models | Training magnitude confidence model | rows=53,909 | feature_count=16
+2026-08-06 17:03:55 | INFO | src.models | fit_final_confidence_models | Magnitude confidence output summary | expected_error_mean=0.329453 | expected_error_min=0.101996 | expected_error_max=8.383667 | conf_mean=0.566312 | conf_min=0.000000 | conf_max=1.000000
+2026-08-06 17:03:55 | INFO | root | log_stage | Completed: Final confidence-model fitting and scoring | elapsed=4.26s
+2026-08-06 17:03:55 | INFO | root | main | Scoring train | rows=182,495
+2026-08-06 17:03:55 | INFO | root | main | Scoring valid | rows=53,909
+2026-08-06 17:03:55 | INFO | root | main | Scoring test | rows=58,656
+2026-08-06 17:03:55 | INFO | root | main | Prediction summary | rows=295,060 | predicted_up_fraction=0.729509 | mean_pred_magnitude_pct=0.455374 | mean_conf_direction=0.673336 | mean_conf_magnitude=0.566312 | conf_direction_min=0.500001 | conf_direction_max=0.999992 | conf_magnitude_min=0.000000 | conf_magnitude_max=1.000000
+2026-08-06 17:03:55 | INFO | root | log_stage | Starting: Output dataframe construction
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Predictions/actuals key alignment: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Duplicate-row check: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Null/infinity check: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Direction-range check: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Confidence-range check: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Statistics completeness: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | validate_output_frames | Statistics rows: 123
+2026-08-06 17:03:57 | INFO | root | log_stage | Completed: Output dataframe construction | elapsed=1.54s
+2026-08-06 17:03:57 | INFO | root | log_stage | Starting: Writing output files
+2026-08-06 17:03:57 | INFO | src.evaluate | write_outputs | Writing predictions.csv
+2026-08-06 17:03:57 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/predictions.csv | Rows: 295,060 | Columns: 8 | Size: 22.8 MB | Schema validation: PASS
+2026-08-06 17:03:57 | INFO | src.evaluate | write_outputs | Writing actuals.csv
+2026-08-06 17:03:58 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/actuals.csv | Rows: 295,060 | Columns: 7 | Size: 24.9 MB | Schema validation: PASS
+2026-08-06 17:03:58 | INFO | src.evaluate | write_outputs | Writing statistics.csv
+2026-08-06 17:03:58 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/statistics.csv | Rows: 123 | Columns: 5 | Size: 6.3 KB | Schema validation: PASS
+2026-08-06 17:03:58 | INFO | root | log_stage | Completed: Writing output files | elapsed=1.34s
+2026-08-06 17:03:58 | INFO | root | main | Output rows | predictions=295060 actuals=295060 statistics=123
+2026-08-06 17:03:58 | INFO | root | main | Split rows | {'test': 58656, 'train': 182495, 'valid': 53909}
+2026-08-06 17:03:58 | INFO | root | main | Validation summary | {
+  "direction_score": 0.29481723269301396,
+  "magnitude_score": 0.2523073952342648,
+  "rank_ic": 0.24504012531148395,
+  "conf_direction_score": 0.30218960750705026,
+  "conf_magnitude_spearman": 0.3010642338036798,
+  "magnitude_best_iteration": 76
+}
+2026-08-06 17:03:58 | INFO | root | main | ============================================================
+2026-08-06 17:03:58 | INFO | root | main | PIPELINE COMPLETED SUCCESSFULLY
+2026-08-06 17:03:58 | INFO | root | main | ============================================================
+2026-08-06 17:03:58 | INFO | root | main | Total runtime: 5m 21s
+2026-08-06 17:03:58 | INFO | root | main | Daily symbols: 208
+2026-08-06 17:03:58 | INFO | root | main | Minute symbols: 208
+2026-08-06 17:03:58 | INFO | root | main | Scored rows: 295,060
+2026-08-06 17:03:58 | INFO | root | main | Train rows: 182,495
+2026-08-06 17:03:58 | INFO | root | main | Validation rows: 53,909
+2026-08-06 17:03:58 | INFO | root | main | Test rows: 58,656
+2026-08-06 17:03:58 | INFO | root | main | Statistics rows: 123
+2026-08-06 17:03:58 | INFO | root | main | Validation:
+2026-08-06 17:03:58 | INFO | root | main | Direction score: 0.294817
+2026-08-06 17:03:58 | INFO | root | main | Magnitude score: 0.252307
+2026-08-06 17:03:58 | INFO | root | main | Rank IC: 0.245040
+2026-08-06 17:03:58 | INFO | root | main | Direction-confidence score: 0.302190
+2026-08-06 17:03:58 | INFO | root | main | Magnitude-confidence Spearman: 0.301064
+2026-08-06 17:03:58 | INFO | root | main | Magnitude best iteration: 76
+2026-08-06 17:03:58 | INFO | root | main | Outputs:
+2026-08-06 17:03:58 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/predictions.csv
+2026-08-06 17:03:58 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/actuals.csv
+2026-08-06 17:03:58 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/statistics.csv
+2026-08-06 17:03:58 | INFO | root | main | Log:
+2026-08-06 17:03:58 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_165837.log
+2026-08-06 17:03:58 | INFO | root | main | ============================================================
+2026-08-06 17:03:58 | INFO | root | log_stage | Completed: Pipeline | elapsed=5m 21s

@@ -1,0 +1,205 @@
+2026-08-06 16:57:00 | INFO | root | main | ============================================================
+2026-08-06 16:57:00 | INFO | root | main | ASTRA OVERNIGHT RETURN PIPELINE
+2026-08-06 16:57:00 | INFO | root | main | ============================================================
+2026-08-06 16:57:00 | INFO | root | main | Project root: /Users/kushagr/Desktop/astra-assignment
+2026-08-06 16:57:00 | INFO | root | main | Config: /Users/kushagr/Desktop/astra-assignment/code/config.yaml
+2026-08-06 16:57:00 | INFO | root | main | Python version: 3.13.7
+2026-08-06 16:57:00 | INFO | root | main | Seed: 42
+2026-08-06 16:57:00 | INFO | root | main | Cache enabled: True
+2026-08-06 16:57:00 | INFO | root | main | Cache rebuild: False
+2026-08-06 16:57:00 | INFO | root | main | Output directory: /Users/kushagr/Desktop/astra-assignment/final_outputs
+2026-08-06 16:57:00 | INFO | root | main | Log file: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_165700.log
+2026-08-06 16:57:00 | INFO | root | main | ============================================================
+2026-08-06 16:57:00 | DEBUG | root | main | Package versions: {"lightgbm": "4.7.0", "numpy": "2.3.5", "pandas": "2.3.3", "pyarrow": "25.0.0", "python": "3.13.7", "scipy": "1.18.0", "sklearn": "1.9.0"}
+2026-08-06 16:57:00 | INFO | root | log_stage | Starting: Pipeline
+2026-08-06 16:57:00 | INFO | root | load_or_build_panel | Cache hit: /Users/kushagr/Desktop/astra-assignment/outputs/processed_data/model_features_with_splits_v1.parquet
+2026-08-06 16:57:00 | INFO | root | load_or_build_panel | Cached rows: 301,275 | cached target rows: 301,275
+2026-08-06 16:57:00 | INFO | root | load_or_build_panel | Cached panel validation passed
+2026-08-06 16:57:00 | INFO | root | log_stage | Starting: Validation benchmark reproduction
+2026-08-06 16:57:00 | INFO | root | run_validation_checks | Running validation benchmark reproduction
+2026-08-06 16:57:00 | INFO | root | run_validation_checks | Validation direction warm-up rows | train=182,495 | valid=53,909
+2026-08-06 16:57:00 | INFO | root | run_validation_checks | Training validation direction model | rows=182,495 | features=26 | categorical_features=1 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 16:57:00 | INFO | root | run_validation_checks | Validation direction parameters | {"bagging_fraction": 0.8, "bagging_freq": 1, "feature_fraction": 0.6, "learning_rate": 0.05, "min_child_samples": 100, "n_estimators": 1000, "n_jobs": -1, "num_leaves": 31, "objective": "binary", "random_state": 42, "verbosity": -1}
+2026-08-06 16:57:08 | INFO | root | run_validation_checks | Validation direction prediction summary | probability_mean=0.725173 | probability_std=0.152156 | probability_min=0.061273 | probability_max=0.993161 | predicted_up_fraction=0.768369 | hit_rate=0.650893
+2026-08-06 16:57:08 | INFO | src.models | fit_validation_magnitude_model | Training validation magnitude model | rows=182,495 | valid_rows=53,909 | features=38 | categorical_features=1
+2026-08-06 16:57:08 | INFO | src.models | fit_validation_magnitude_model | Validation magnitude target summary | train_mean=0.415661 | valid_mean=0.399411
+2026-08-06 16:57:08 | ERROR | root | log_stage | Failed: Validation benchmark reproduction | elapsed=7.83s | error=Wrong type(str) or unknown name(symbol) in categorical_feature
+Traceback (most recent call last):
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/utils.py", line 128, in log_stage
+    yield
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 354, in main
+    validation_summary = run_validation_checks(model_df, config, logger)
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 202, in run_validation_checks
+    magnitude_model, best_iteration = fit_validation_magnitude_model(train_df, valid_df, config)
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/models.py", line 147, in fit_validation_magnitude_model
+    model.fit(
+    ~~~~~~~~~^
+        x_train,
+        ^^^^^^^^
+    ...<5 lines>...
+        callbacks=[lgb.early_stopping(stopping_rounds=100, verbose=False)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/sklearn.py", line 1536, in fit
+    super().fit(
+    ~~~~~~~~~~~^
+        X,
+        ^^
+    ...<13 lines>...
+        init_model=init_model,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/sklearn.py", line 1171, in fit
+    self._Booster = train(
+                    ~~~~~^
+        params=params,
+        ^^^^^^^^^^^^^^
+    ...<6 lines>...
+        callbacks=callbacks,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/engine.py", line 300, in train
+    booster.add_valid(valid_set, name_valid_set)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 4164, in add_valid
+    data.construct()._handle,
+    ~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 2519, in construct
+    self._lazy_init(
+    ~~~~~~~~~~~~~~~^
+        data=self.data,
+        ^^^^^^^^^^^^^^^
+    ...<9 lines>...
+        params=self.params,
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 2136, in _lazy_init
+    raise TypeError(f"Wrong type({type(name).__name__}) or unknown name({name}) in categorical_feature")
+TypeError: Wrong type(str) or unknown name(symbol) in categorical_feature
+2026-08-06 16:57:08 | ERROR | root | log_stage | Failed: Pipeline | elapsed=8.19s | error=Wrong type(str) or unknown name(symbol) in categorical_feature
+Traceback (most recent call last):
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/utils.py", line 128, in log_stage
+    yield
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 354, in main
+    validation_summary = run_validation_checks(model_df, config, logger)
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 202, in run_validation_checks
+    magnitude_model, best_iteration = fit_validation_magnitude_model(train_df, valid_df, config)
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/models.py", line 147, in fit_validation_magnitude_model
+    model.fit(
+    ~~~~~~~~~^
+        x_train,
+        ^^^^^^^^
+    ...<5 lines>...
+        callbacks=[lgb.early_stopping(stopping_rounds=100, verbose=False)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/sklearn.py", line 1536, in fit
+    super().fit(
+    ~~~~~~~~~~~^
+        X,
+        ^^
+    ...<13 lines>...
+        init_model=init_model,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/sklearn.py", line 1171, in fit
+    self._Booster = train(
+                    ~~~~~^
+        params=params,
+        ^^^^^^^^^^^^^^
+    ...<6 lines>...
+        callbacks=callbacks,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/engine.py", line 300, in train
+    booster.add_valid(valid_set, name_valid_set)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 4164, in add_valid
+    data.construct()._handle,
+    ~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 2519, in construct
+    self._lazy_init(
+    ~~~~~~~~~~~~~~~^
+        data=self.data,
+        ^^^^^^^^^^^^^^^
+    ...<9 lines>...
+        params=self.params,
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 2136, in _lazy_init
+    raise TypeError(f"Wrong type({type(name).__name__}) or unknown name({name}) in categorical_feature")
+TypeError: Wrong type(str) or unknown name(symbol) in categorical_feature
+2026-08-06 16:57:08 | ERROR | root | main | ============================================================
+2026-08-06 16:57:08 | ERROR | root | main | PIPELINE FAILED
+2026-08-06 16:57:08 | ERROR | root | main | ============================================================
+2026-08-06 16:57:08 | ERROR | root | main | Exception type: TypeError
+2026-08-06 16:57:08 | ERROR | root | main | Exception message: Wrong type(str) or unknown name(symbol) in categorical_feature
+2026-08-06 16:57:08 | ERROR | root | main | Elapsed time: 8.20s
+2026-08-06 16:57:08 | ERROR | root | main | Log-file path: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_165700.log
+2026-08-06 16:57:08 | ERROR | root | main | ============================================================
+2026-08-06 16:57:08 | ERROR | root | main | Stack trace follows
+Traceback (most recent call last):
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 354, in main
+    validation_summary = run_validation_checks(model_df, config, logger)
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 202, in run_validation_checks
+    magnitude_model, best_iteration = fit_validation_magnitude_model(train_df, valid_df, config)
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/models.py", line 147, in fit_validation_magnitude_model
+    model.fit(
+    ~~~~~~~~~^
+        x_train,
+        ^^^^^^^^
+    ...<5 lines>...
+        callbacks=[lgb.early_stopping(stopping_rounds=100, verbose=False)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/sklearn.py", line 1536, in fit
+    super().fit(
+    ~~~~~~~~~~~^
+        X,
+        ^^
+    ...<13 lines>...
+        init_model=init_model,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/sklearn.py", line 1171, in fit
+    self._Booster = train(
+                    ~~~~~^
+        params=params,
+        ^^^^^^^^^^^^^^
+    ...<6 lines>...
+        callbacks=callbacks,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/engine.py", line 300, in train
+    booster.add_valid(valid_set, name_valid_set)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 4164, in add_valid
+    data.construct()._handle,
+    ~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 2519, in construct
+    self._lazy_init(
+    ~~~~~~~~~~~~~~~^
+        data=self.data,
+        ^^^^^^^^^^^^^^^
+    ...<9 lines>...
+        params=self.params,
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/lightgbm/basic.py", line 2136, in _lazy_init
+    raise TypeError(f"Wrong type({type(name).__name__}) or unknown name({name}) in categorical_feature")
+TypeError: Wrong type(str) or unknown name(symbol) in categorical_feature

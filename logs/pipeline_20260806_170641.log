@@ -1,0 +1,180 @@
+2026-08-06 17:06:41 | INFO | root | main | ============================================================
+2026-08-06 17:06:41 | INFO | root | main | ASTRA OVERNIGHT RETURN PIPELINE
+2026-08-06 17:06:41 | INFO | root | main | ============================================================
+2026-08-06 17:06:41 | INFO | root | main | Project root: /Users/kushagr/Desktop/astra-assignment
+2026-08-06 17:06:41 | INFO | root | main | Config: /private/tmp/astra_config_rebuild_logging.yaml
+2026-08-06 17:06:41 | INFO | root | main | Python version: 3.13.7
+2026-08-06 17:06:41 | INFO | root | main | Seed: 42
+2026-08-06 17:06:41 | INFO | root | main | Cache enabled: True
+2026-08-06 17:06:41 | INFO | root | main | Cache rebuild: True
+2026-08-06 17:06:41 | INFO | root | main | Output directory: /Users/kushagr/Desktop/astra-assignment/final_outputs
+2026-08-06 17:06:41 | INFO | root | main | Log file: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_170641.log
+2026-08-06 17:06:41 | INFO | root | main | ============================================================
+2026-08-06 17:06:41 | DEBUG | root | main | Package versions: {"lightgbm": "4.7.0", "numpy": "2.3.5", "pandas": "2.3.3", "pyarrow": "25.0.0", "python": "3.13.7", "scipy": "1.18.0", "sklearn": "1.9.0"}
+2026-08-06 17:06:41 | INFO | root | log_stage | Starting: Pipeline
+2026-08-06 17:06:41 | INFO | root | load_or_build_panel | Cache rebuild requested; ignoring existing cache
+2026-08-06 17:06:41 | INFO | root | log_stage | Starting: Loading daily data
+2026-08-06 17:06:41 | INFO | src.data | load_all_daily_data | Daily directory: /Users/kushagr/Desktop/astra-assignment/data/daily
+2026-08-06 17:06:41 | INFO | src.data | load_all_daily_data | Found 208 daily files
+2026-08-06 17:06:41 | INFO | src.data | load_all_daily_data | Daily symbols span: first=360ONE last=ZYDUSLIFE
+2026-08-06 17:06:42 | INFO | src.data | load_all_daily_data | Loaded 301,483 daily rows
+2026-08-06 17:06:42 | INFO | src.data | load_all_daily_data | Daily range: 2020-06-01 to 2026-06-30
+2026-08-06 17:06:42 | INFO | src.data | validate_daily_data | Daily duplicate symbol-date rows: 0
+2026-08-06 17:06:42 | INFO | src.data | validate_daily_data | Daily non-positive price cells: 0
+2026-08-06 17:06:42 | INFO | src.data | validate_daily_data | Daily negative-volume rows: 0
+2026-08-06 17:06:42 | INFO | src.data | validate_daily_data | Daily high-below-low rows: 0
+2026-08-06 17:06:42 | INFO | root | log_stage | Completed: Loading daily data | elapsed=0.41s
+2026-08-06 17:06:42 | INFO | root | log_stage | Starting: Validating minute universe
+2026-08-06 17:06:42 | INFO | src.data | list_minute_files | Minute directory: /Users/kushagr/Desktop/astra-assignment/data/minute
+2026-08-06 17:06:42 | INFO | src.data | list_minute_files | Found 208 minute files
+2026-08-06 17:06:42 | INFO | src.data | list_minute_files | Minute symbols span: first=360ONE last=ZYDUSLIFE
+2026-08-06 17:06:42 | INFO | src.data | validate_minute_universe | Minute symbol count: 208
+2026-08-06 17:06:42 | INFO | src.data | validate_minute_universe | Daily/minute symbol universes match
+2026-08-06 17:06:42 | INFO | root | log_stage | Completed: Validating minute universe | elapsed=0.01s
+2026-08-06 17:06:42 | INFO | root | log_stage | Starting: Constructing targets
+2026-08-06 17:06:42 | INFO | src.data | construct_targets | Target rows retained: 301,275
+2026-08-06 17:06:42 | INFO | src.data | construct_targets | Rows removed without next session: 208
+2026-08-06 17:06:42 | INFO | root | log_stage | Completed: Constructing targets | elapsed=0.05s
+2026-08-06 17:06:42 | INFO | root | log_stage | Starting: Building feature panel
+2026-08-06 17:06:42 | INFO | src.features | create_daily_features | Daily features | count=13 | input_rows=301,275
+2026-08-06 17:06:42 | INFO | src.features | create_daily_features | Daily features complete | output_rows=301,275 | symbols=208
+2026-08-06 17:06:42 | INFO | src.features | build_minute_feature_panel | Minute-derived features | feature_count=6 | symbols=208
+2026-08-06 17:06:43 | INFO | src.features | build_minute_feature_panel | Minute features [1/208] 360ONE | sessions=1,509 | incomplete_sessions=535 | symbol_elapsed=1.38s | elapsed=1.38s | ETA=4m 47s
+2026-08-06 17:06:56 | INFO | src.features | build_minute_feature_panel | Minute features [10/208] AMBER | sessions=1,509 | incomplete_sessions=134 | symbol_elapsed=1.34s | elapsed=13.60s | ETA=4m 29s
+2026-08-06 17:07:09 | INFO | src.features | build_minute_feature_panel | Minute features [20/208] AXISBANK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.37s | elapsed=27.01s | ETA=4m 14s
+2026-08-06 17:07:23 | INFO | src.features | build_minute_feature_panel | Minute features [30/208] BHARATFORG | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.58s | elapsed=41.41s | ETA=4m 6s
+2026-08-06 17:07:38 | INFO | src.features | build_minute_feature_panel | Minute features [40/208] CANBK | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.57s | elapsed=56.53s | ETA=3m 57s
+2026-08-06 17:07:53 | INFO | src.features | build_minute_feature_panel | Minute features [50/208] CROMPTON | sessions=1,509 | incomplete_sessions=24 | symbol_elapsed=1.44s | elapsed=1m 11s | ETA=3m 43s
+2026-08-06 17:08:08 | INFO | src.features | build_minute_feature_panel | Minute features [60/208] EICHERMOT | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.67s | elapsed=1m 26s | ETA=3m 31s
+2026-08-06 17:08:22 | INFO | src.features | build_minute_feature_panel | Minute features [70/208] GODREJPROP | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.46s | elapsed=1m 40s | ETA=3m 17s
+2026-08-06 17:08:36 | INFO | src.features | build_minute_feature_panel | Minute features [80/208] HINDALCO | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.38s | elapsed=1m 54s | ETA=3m 3s
+2026-08-06 17:08:49 | INFO | src.features | build_minute_feature_panel | Minute features [90/208] IEX | sessions=1,509 | incomplete_sessions=29 | symbol_elapsed=1.37s | elapsed=2m 7s | ETA=2m 47s
+2026-08-06 17:09:03 | INFO | src.features | build_minute_feature_panel | Minute features [100/208] IRFC | sessions=1,339 | incomplete_sessions=15 | symbol_elapsed=1.48s | elapsed=2m 21s | ETA=2m 32s
+2026-08-06 17:09:14 | INFO | src.features | build_minute_feature_panel | Minute features [110/208] KFINTECH | sessions=864 | incomplete_sessions=65 | symbol_elapsed=0.75s | elapsed=2m 32s | ETA=2m 15s
+2026-08-06 17:09:27 | INFO | src.features | build_minute_feature_panel | Minute features [120/208] LUPIN | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.32s | elapsed=2m 45s | ETA=2m 1s
+2026-08-06 17:09:39 | INFO | src.features | build_minute_feature_panel | Minute features [130/208] MOTHERSON | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.31s | elapsed=2m 57s | ETA=1m 46s
+2026-08-06 17:09:52 | INFO | src.features | build_minute_feature_panel | Minute features [140/208] NMDC | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.32s | elapsed=3m 10s | ETA=1m 33s
+2026-08-06 17:10:05 | INFO | src.features | build_minute_feature_panel | Minute features [150/208] PERSISTENT | sessions=1,509 | incomplete_sessions=47 | symbol_elapsed=1.32s | elapsed=3m 23s | ETA=1m 19s
+2026-08-06 17:10:18 | INFO | src.features | build_minute_feature_panel | Minute features [160/208] POLYCAB | sessions=1,509 | incomplete_sessions=20 | symbol_elapsed=1.35s | elapsed=3m 36s | ETA=1m 5s
+2026-08-06 17:10:31 | INFO | src.features | build_minute_feature_panel | Minute features [170/208] SAIL | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.45s | elapsed=3m 49s | ETA=51.21s
+2026-08-06 17:10:44 | INFO | src.features | build_minute_feature_panel | Minute features [180/208] SUNPHARMA | sessions=1,509 | incomplete_sessions=18 | symbol_elapsed=1.36s | elapsed=4m 2s | ETA=37.72s
+2026-08-06 17:10:58 | INFO | src.features | build_minute_feature_panel | Minute features [190/208] TIINDIA | sessions=1,509 | incomplete_sessions=220 | symbol_elapsed=1.38s | elapsed=4m 16s | ETA=24.23s
+2026-08-06 17:11:12 | INFO | src.features | build_minute_feature_panel | Minute features [200/208] UPL | sessions=1,509 | incomplete_sessions=19 | symbol_elapsed=1.35s | elapsed=4m 30s | ETA=10.80s
+2026-08-06 17:11:21 | INFO | src.features | build_minute_feature_panel | Minute features [208/208] ZYDUSLIFE | sessions=1,509 | incomplete_sessions=17 | symbol_elapsed=1.34s | elapsed=4m 39s | ETA=0.00s
+2026-08-06 17:11:21 | INFO | src.features | build_minute_feature_panel | Minute-derived features complete | rows=301,074 | zero_volume_bars=1,119,589 | incomplete_sessions=11,432
+2026-08-06 17:11:21 | WARNING | src.features | build_minute_feature_panel | Found 1,119,589 zero-volume minute bars across 208 symbols
+2026-08-06 17:11:21 | INFO | src.features | add_cross_sectional_features | Cross-sectional features | count=6 | input_rows=301,275 | dates=1,510
+2026-08-06 17:11:21 | INFO | src.features | add_cross_sectional_features | Cross-sectional features complete | output_rows=301,275
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | Final modelling panel | shape=(301,275, 52) | symbols=208 | date_range=2020-06-01 to 2026-06-29 | duplicates=0 | direction_features=26 | magnitude_candidate_columns=49
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | Top feature missingness:
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | rolling_beta_to_universe_60d: 8,320
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | return_20d: 4,160
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | daily_volatility_20d: 4,160
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | overnight_std_20d: 4,160
+2026-08-06 17:11:21 | INFO | src.features | build_feature_panel | gap_mean_20d: 4,160
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | Chronological split complete
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | train | rows=186,555 | dates=955 | start=2020-06-01 | end=2024-03-28
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | embargo | rows=2,055 | dates=10
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | valid | rows=54,009 | dates=263 | start=2024-04-08 | end=2025-04-30
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | test | rows=58,656 | dates=282 | start=2025-05-09 | end=2026-06-29
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | Embargo checks passed
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | Split integrity checks passed
+2026-08-06 17:11:21 | INFO | src.data | apply_chronological_splits | No date overlap found
+2026-08-06 17:11:21 | INFO | root | log_stage | Completed: Building feature panel | elapsed=4m 40s
+2026-08-06 17:11:22 | INFO | root | load_or_build_panel | Saved processed panel: /Users/kushagr/Desktop/astra-assignment/outputs/processed_data/model_features_with_splits_v1.parquet | Rows: 301,275 | File size: 78.7 MB
+2026-08-06 17:11:22 | INFO | root | log_stage | Starting: Validation benchmark reproduction
+2026-08-06 17:11:22 | INFO | root | run_validation_checks | Running validation benchmark reproduction
+2026-08-06 17:11:22 | INFO | root | run_validation_checks | Validation direction warm-up rows | train=182,495 | valid=53,909
+2026-08-06 17:11:22 | INFO | root | run_validation_checks | Training validation direction model | rows=182,495 | features=26 | categorical_features=1 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 17:11:22 | INFO | root | run_validation_checks | Validation direction parameters | {"bagging_fraction": 0.8, "bagging_freq": 1, "feature_fraction": 0.6, "learning_rate": 0.05, "min_child_samples": 100, "n_estimators": 1000, "n_jobs": -1, "num_leaves": 31, "objective": "binary", "random_state": 42, "verbosity": -1}
+2026-08-06 17:11:30 | INFO | root | run_validation_checks | Validation direction prediction summary | probability_mean=0.725173 | probability_std=0.152156 | probability_min=0.061273 | probability_max=0.993161 | predicted_up_fraction=0.768369 | hit_rate=0.650893
+2026-08-06 17:11:30 | INFO | src.models | fit_validation_magnitude_model | Training validation magnitude model | rows=182,495 | valid_rows=53,909 | features=46 | categorical_features=1
+2026-08-06 17:11:30 | INFO | src.models | fit_validation_magnitude_model | Validation magnitude target summary | train_mean=0.415661 | valid_mean=0.399411
+2026-08-06 17:11:31 | INFO | src.models | fit_validation_magnitude_model | Magnitude early stopping selected iteration: 76
+2026-08-06 17:11:32 | INFO | src.models | run_shadow_workflow | Training shadow direction model | rows=182,495 | features=26 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 17:11:39 | INFO | src.models | run_shadow_workflow | Shadow direction validation correctness rate: 0.650893
+2026-08-06 17:11:39 | INFO | src.models | run_shadow_workflow | Training shadow magnitude model | rows=182,495 | features=46
+2026-08-06 17:11:40 | INFO | src.models | run_shadow_workflow | Shadow magnitude validation absolute-error summary | mean=0.466684 | median=0.306214 | max=33.783224
+2026-08-06 17:11:42 | INFO | root | log_benchmark_result | direction_score | observed=0.294817 | reference=0.294817 | delta=+0.000000 | tolerance=0.005000 | PASS
+2026-08-06 17:11:42 | INFO | root | log_benchmark_result | magnitude_score | observed=0.252307 | reference=0.254340 | delta=-0.002033 | tolerance=0.005000 | PASS
+2026-08-06 17:11:42 | INFO | root | log_benchmark_result | rank_ic | observed=0.245040 | reference=0.245931 | delta=-0.000891 | tolerance=0.010000 | PASS
+2026-08-06 17:11:42 | WARNING | root | log_benchmark_result | conf_direction_score | observed=0.302190 | reference=0.268893 | delta=+0.033297 | tolerance=0.010000 | WARN
+2026-08-06 17:11:42 | INFO | root | log_benchmark_result | conf_magnitude_spearman | observed=0.301064 | reference=0.299122 | delta=+0.001942 | tolerance=0.020000 | PASS
+2026-08-06 17:11:42 | INFO | root | run_validation_checks | Magnitude best iteration | observed=76 | reference=84 | delta=-8 | status=WARN
+2026-08-06 17:11:42 | INFO | root | log_stage | Completed: Validation benchmark reproduction | elapsed=20.11s
+2026-08-06 17:11:42 | INFO | root | log_stage | Starting: Shadow-model workflow
+2026-08-06 17:11:42 | INFO | src.models | run_shadow_workflow | Training shadow direction model | rows=182,495 | features=26 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 17:11:49 | INFO | src.models | run_shadow_workflow | Shadow direction validation correctness rate: 0.650893
+2026-08-06 17:11:49 | INFO | src.models | run_shadow_workflow | Training shadow magnitude model | rows=182,495 | features=46
+2026-08-06 17:11:50 | INFO | src.models | run_shadow_workflow | Shadow magnitude validation absolute-error summary | mean=0.466684 | median=0.306214 | max=33.783224
+2026-08-06 17:11:50 | INFO | root | log_stage | Completed: Shadow-model workflow | elapsed=8.23s
+2026-08-06 17:11:50 | INFO | root | log_stage | Starting: Final primary-model fitting and scoring
+2026-08-06 17:11:51 | INFO | src.models | fit_final_primary_models | Training final direction model | rows=236,404 | features=26 | categorical_features=1 | positive_target_fraction=0.7222 | threshold=0.64
+2026-08-06 17:12:00 | INFO | src.models | fit_final_primary_models | Training final magnitude model | rows=236,404 | features=46 | selected_tree_count=84
+2026-08-06 17:12:02 | INFO | src.models | fit_final_primary_models | Primary model scoring summary | scored_rows=295,060 | predicted_up_fraction=0.729509 | mean_pred_magnitude_pct=0.455374
+2026-08-06 17:12:02 | INFO | root | log_stage | Completed: Final primary-model fitting and scoring | elapsed=11.37s
+2026-08-06 17:12:02 | INFO | root | log_stage | Starting: Final confidence-model fitting and scoring
+2026-08-06 17:12:02 | INFO | src.models | fit_final_confidence_models | Direction confidence setup | correctness_rate=0.650893 | rows=53,909
+2026-08-06 17:12:02 | INFO | src.models | fit_final_confidence_models | Training direction confidence model | rows=53,909 | feature_count=15
+2026-08-06 17:12:02 | INFO | src.models | fit_final_confidence_models | Direction confidence output summary | mean=0.673336 | min=0.500001 | max=0.999992
+2026-08-06 17:12:02 | INFO | src.models | fit_final_confidence_models | Magnitude confidence setup | abs_error_mean=0.466684 | abs_error_median=0.306214 | abs_error_max=33.783224
+2026-08-06 17:12:02 | INFO | src.models | fit_final_confidence_models | Training magnitude confidence model | rows=53,909 | feature_count=16
+2026-08-06 17:12:06 | INFO | src.models | fit_final_confidence_models | Magnitude confidence output summary | expected_error_mean=0.329453 | expected_error_min=0.101996 | expected_error_max=8.383667 | conf_mean=0.566312 | conf_min=0.000000 | conf_max=1.000000
+2026-08-06 17:12:06 | INFO | root | log_stage | Completed: Final confidence-model fitting and scoring | elapsed=4.30s
+2026-08-06 17:12:06 | INFO | root | main | Scoring train | rows=182,495
+2026-08-06 17:12:06 | INFO | root | main | Scoring valid | rows=53,909
+2026-08-06 17:12:06 | INFO | root | main | Scoring test | rows=58,656
+2026-08-06 17:12:06 | INFO | root | main | Prediction summary | rows=295,060 | predicted_up_fraction=0.729509 | mean_pred_magnitude_pct=0.455374 | mean_conf_direction=0.673336 | mean_conf_magnitude=0.566312 | conf_direction_min=0.500001 | conf_direction_max=0.999992 | conf_magnitude_min=0.000000 | conf_magnitude_max=1.000000
+2026-08-06 17:12:06 | INFO | root | log_stage | Starting: Output dataframe construction
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Predictions/actuals key alignment: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Duplicate-row check: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Null/infinity check: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Direction-range check: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Confidence-range check: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Statistics completeness: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | validate_output_frames | Statistics rows: 123
+2026-08-06 17:12:08 | INFO | root | log_stage | Completed: Output dataframe construction | elapsed=1.67s
+2026-08-06 17:12:08 | INFO | root | log_stage | Starting: Writing output files
+2026-08-06 17:12:08 | INFO | src.evaluate | write_outputs | Writing predictions.csv
+2026-08-06 17:12:08 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/predictions.csv | Rows: 295,060 | Columns: 8 | Size: 22.8 MB | Schema validation: PASS
+2026-08-06 17:12:08 | INFO | src.evaluate | write_outputs | Writing actuals.csv
+2026-08-06 17:12:09 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/actuals.csv | Rows: 295,060 | Columns: 7 | Size: 24.9 MB | Schema validation: PASS
+2026-08-06 17:12:09 | INFO | src.evaluate | write_outputs | Writing statistics.csv
+2026-08-06 17:12:09 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/statistics.csv | Rows: 123 | Columns: 5 | Size: 6.3 KB | Schema validation: PASS
+2026-08-06 17:12:09 | INFO | root | log_stage | Completed: Writing output files | elapsed=1.37s
+2026-08-06 17:12:09 | INFO | root | main | Output rows | predictions=295060 actuals=295060 statistics=123
+2026-08-06 17:12:09 | INFO | root | main | Split rows | {'test': 58656, 'train': 182495, 'valid': 53909}
+2026-08-06 17:12:09 | INFO | root | main | Validation summary | {
+  "direction_score": 0.29481723269301396,
+  "magnitude_score": 0.2523073952342648,
+  "rank_ic": 0.24504012531148395,
+  "conf_direction_score": 0.30218960750705026,
+  "conf_magnitude_spearman": 0.3010642338036798,
+  "magnitude_best_iteration": 76
+}
+2026-08-06 17:12:09 | INFO | root | main | ============================================================
+2026-08-06 17:12:09 | INFO | root | main | PIPELINE COMPLETED SUCCESSFULLY
+2026-08-06 17:12:09 | INFO | root | main | ============================================================
+2026-08-06 17:12:09 | INFO | root | main | Total runtime: 5m 28s
+2026-08-06 17:12:09 | INFO | root | main | Daily symbols: 208
+2026-08-06 17:12:09 | INFO | root | main | Minute symbols: 208
+2026-08-06 17:12:09 | INFO | root | main | Scored rows: 295,060
+2026-08-06 17:12:09 | INFO | root | main | Train rows: 182,495
+2026-08-06 17:12:09 | INFO | root | main | Validation rows: 53,909
+2026-08-06 17:12:09 | INFO | root | main | Test rows: 58,656
+2026-08-06 17:12:09 | INFO | root | main | Statistics rows: 123
+2026-08-06 17:12:09 | INFO | root | main | Validation:
+2026-08-06 17:12:09 | INFO | root | main | Direction score: 0.294817
+2026-08-06 17:12:09 | INFO | root | main | Magnitude score: 0.252307
+2026-08-06 17:12:09 | INFO | root | main | Rank IC: 0.245040
+2026-08-06 17:12:09 | INFO | root | main | Direction-confidence score: 0.302190
+2026-08-06 17:12:09 | INFO | root | main | Magnitude-confidence Spearman: 0.301064
+2026-08-06 17:12:09 | INFO | root | main | Magnitude best iteration: 76
+2026-08-06 17:12:09 | INFO | root | main | Outputs:
+2026-08-06 17:12:09 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/predictions.csv
+2026-08-06 17:12:09 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/actuals.csv
+2026-08-06 17:12:09 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/statistics.csv
+2026-08-06 17:12:09 | INFO | root | main | Log:
+2026-08-06 17:12:09 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_170641.log
+2026-08-06 17:12:09 | INFO | root | main | ============================================================
+2026-08-06 17:12:09 | INFO | root | log_stage | Completed: Pipeline | elapsed=5m 28s

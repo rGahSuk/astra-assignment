@@ -1,0 +1,55 @@
+2026-08-06 17:13:41 | INFO | root | main | ============================================================
+2026-08-06 17:13:41 | INFO | root | main | ASTRA OVERNIGHT RETURN PIPELINE
+2026-08-06 17:13:41 | INFO | root | main | ============================================================
+2026-08-06 17:13:41 | INFO | root | main | Project root: /Users/kushagr/Desktop/astra-assignment
+2026-08-06 17:13:41 | INFO | root | main | Config: /private/tmp/astra_config_fail_rebuild_logging.yaml
+2026-08-06 17:13:41 | INFO | root | main | Python version: 3.13.7
+2026-08-06 17:13:41 | INFO | root | main | Seed: 42
+2026-08-06 17:13:41 | INFO | root | main | Cache enabled: False
+2026-08-06 17:13:41 | INFO | root | main | Cache rebuild: False
+2026-08-06 17:13:41 | INFO | root | main | Output directory: /Users/kushagr/Desktop/astra-assignment/final_outputs
+2026-08-06 17:13:41 | INFO | root | main | Log file: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_171341.log
+2026-08-06 17:13:41 | INFO | root | main | ============================================================
+2026-08-06 17:13:41 | DEBUG | root | main | Package versions: {"lightgbm": "4.7.0", "numpy": "2.3.5", "pandas": "2.3.3", "pyarrow": "25.0.0", "python": "3.13.7", "scipy": "1.18.0", "sklearn": "1.9.0"}
+2026-08-06 17:13:41 | INFO | root | log_stage | Starting: Pipeline
+2026-08-06 17:13:41 | INFO | root | load_or_build_panel | Cache disabled; rebuilding feature panel from raw data
+2026-08-06 17:13:41 | INFO | root | log_stage | Starting: Loading daily data
+2026-08-06 17:13:41 | ERROR | root | log_stage | Failed: Loading daily data | elapsed=0.00s | error=No daily parquet files found in /Users/kushagr/Desktop/astra-assignment/data/does_not_exist
+Traceback (most recent call last):
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/utils.py", line 128, in log_stage
+    yield
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 107, in load_or_build_panel
+    daily_df = load_all_daily_data(daily_dir)
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/data.py", line 66, in load_all_daily_data
+    raise FileNotFoundError(f"No daily parquet files found in {daily_dir}")
+FileNotFoundError: No daily parquet files found in /Users/kushagr/Desktop/astra-assignment/data/does_not_exist
+2026-08-06 17:13:41 | ERROR | root | log_stage | Failed: Pipeline | elapsed=0.00s | error=No daily parquet files found in /Users/kushagr/Desktop/astra-assignment/data/does_not_exist
+Traceback (most recent call last):
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/utils.py", line 128, in log_stage
+    yield
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 345, in main
+    model_df, context = load_or_build_panel(config, config_path, logger)
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 107, in load_or_build_panel
+    daily_df = load_all_daily_data(daily_dir)
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/data.py", line 66, in load_all_daily_data
+    raise FileNotFoundError(f"No daily parquet files found in {daily_dir}")
+FileNotFoundError: No daily parquet files found in /Users/kushagr/Desktop/astra-assignment/data/does_not_exist
+2026-08-06 17:13:41 | ERROR | root | main | ============================================================
+2026-08-06 17:13:41 | ERROR | root | main | PIPELINE FAILED
+2026-08-06 17:13:41 | ERROR | root | main | ============================================================
+2026-08-06 17:13:41 | ERROR | root | main | Exception type: FileNotFoundError
+2026-08-06 17:13:41 | ERROR | root | main | Exception message: No daily parquet files found in /Users/kushagr/Desktop/astra-assignment/data/does_not_exist
+2026-08-06 17:13:41 | ERROR | root | main | Elapsed time: 0.01s
+2026-08-06 17:13:41 | ERROR | root | main | Log-file path: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_171341.log
+2026-08-06 17:13:41 | ERROR | root | main | ============================================================
+2026-08-06 17:13:41 | ERROR | root | main | Stack trace follows
+Traceback (most recent call last):
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 345, in main
+    model_df, context = load_or_build_panel(config, config_path, logger)
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kushagr/Desktop/astra-assignment/code/main.py", line 107, in load_or_build_panel
+    daily_df = load_all_daily_data(daily_dir)
+  File "/Users/kushagr/Desktop/astra-assignment/code/src/data.py", line 66, in load_all_daily_data
+    raise FileNotFoundError(f"No daily parquet files found in {daily_dir}")
+FileNotFoundError: No daily parquet files found in /Users/kushagr/Desktop/astra-assignment/data/does_not_exist

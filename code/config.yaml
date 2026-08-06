@@ -1,1 +1,113 @@
+seed: 42
 
+paths:
+  daily_dir: data/daily
+  minute_dir: data/minute
+  processed_dir: outputs/processed_data
+  final_output_dir: final_outputs
+
+data:
+  expected_symbol_count: 208
+  full_session_bars: 375
+  session_start: "09:15"
+  session_end: "15:29"
+
+splits:
+  validation_boundary: "2024-04-01"
+  test_boundary: "2025-05-01"
+  embargo_sessions: 5
+
+direction:
+  threshold: 0.64
+  hyperparameters:
+    objective: binary
+    n_estimators: 1000
+    num_leaves: 31
+    learning_rate: 0.05
+    min_child_samples: 100
+    feature_fraction: 0.60
+    bagging_fraction: 0.80
+    bagging_freq: 1
+    random_state: 42
+    n_jobs: -1
+    verbosity: -1
+
+magnitude:
+  hyperparameters:
+    objective: regression_l1
+    n_estimators: 1500
+    num_leaves: 31
+    learning_rate: 0.03
+    min_child_samples: 100
+    feature_fraction: 0.70
+    bagging_fraction: 0.80
+    bagging_freq: 1
+    reg_lambda: 1.0
+    random_state: 42
+    n_jobs: -1
+    verbosity: -1
+  final_best_iteration: 84
+
+direction_confidence:
+  hyperparameters:
+    C: 0.25
+    max_iter: 2000
+    class_weight: null
+    random_state: 42
+  experimental_validation_fraction: 0.60
+  clip_min: 0.500001
+  clip_max: 0.999999
+
+magnitude_confidence:
+  hyperparameters:
+    objective: regression_l1
+    n_estimators: 750
+    num_leaves: 15
+    learning_rate: 0.03
+    min_child_samples: 150
+    feature_fraction: 0.80
+    bagging_fraction: 0.80
+    bagging_freq: 1
+    reg_lambda: 2.0
+    random_state: 42
+    n_jobs: -1
+    verbosity: -1
+  experimental_validation_fraction: 0.60
+
+output:
+  decimal_places_magnitude: 4
+  predictions_filename: predictions.csv
+  actuals_filename: actuals.csv
+  statistics_filename: statistics.csv
+
+cache:
+  enabled: true
+  rebuild: false
+
+logging:
+  console_level: INFO
+  file_level: DEBUG
+  save_to_file: true
+  log_dir: logs
+  progress_every_symbols: 10
+  show_timestamps: true
+  log_feature_missingness: true
+  log_model_parameters: true
+  fail_on_benchmark_drift: false
+
+benchmarks:
+  direction_score:
+    reference: 0.29481723269301396
+    tolerance: 0.005
+  magnitude_score:
+    reference: 0.254340
+    tolerance: 0.005
+  rank_ic:
+    reference: 0.245931
+    tolerance: 0.01
+  conf_direction_score:
+    reference: 0.268893
+    tolerance: 0.01
+  conf_magnitude_spearman:
+    reference: 0.299122
+    tolerance: 0.02
