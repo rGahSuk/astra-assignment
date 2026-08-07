@@ -431,7 +431,7 @@ def main() -> None:
                 shadow_outputs = run_shadow_workflow(model_df, config)
 
             with log_stage(logger, "Final primary-model fitting and scoring"):
-                primary_outputs = fit_final_primary_models(model_df, config)
+                primary_outputs = fit_final_primary_models(model_df, config, shadow_outputs)
 
             with log_stage(logger, "Final confidence-model fitting and scoring"):
                 confidence_outputs = fit_final_confidence_models(

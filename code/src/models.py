@@ -290,6 +290,11 @@ def run_shadow_workflow(model_df: pd.DataFrame, config: dict) -> dict:
         train_df["actual_direction"].eq(1).astype("int8"),
         categorical_feature=["symbol"],
     )
+    train_probability_up, train_pred_direction = score_direction_model(
+        shadow_direction_model,
+        direction_train_x,
+        config["direction"]["threshold"],
+    )
     valid_probability_up, valid_pred_direction = score_direction_model(
         shadow_direction_model,
         direction_valid_x,
@@ -319,6 +324,7 @@ def run_shadow_workflow(model_df: pd.DataFrame, config: dict) -> dict:
         np.log1p(train_df["actual_magnitude_pct"]),
         categorical_feature=["symbol"],
     )
+    train_pred_magnitude_pct = score_magnitude_model(shadow_magnitude_model, magnitude_train_x)
     valid_pred_magnitude_pct = score_magnitude_model(shadow_magnitude_model, magnitude_valid_x)
     magnitude_error = np.abs(valid_pred_magnitude_pct - valid_df["actual_magnitude_pct"].to_numpy())
     logger.info(
@@ -331,21 +337,31 @@ def run_shadow_workflow(model_df: pd.DataFrame, config: dict) -> dict:
     return {
         "train_df": train_df,
         "valid_df": valid_df,
+        "shadow_train_direction_probability_up": train_probability_up,
+        "shadow_train_pred_direction": train_pred_direction,
+        "shadow_train_pred_magnitude_pct": train_pred_magnitude_pct,
         "shadow_direction_probability_up": valid_probability_up,
         "shadow_pred_direction": valid_pred_direction,
         "shadow_pred_magnitude_pct": valid_pred_magnitude_pct,
     }
 
 
-def fit_final_primary_models(model_df: pd.DataFrame, config: dict) -> dict:
-    """Fit the frozen primary models on train+valid and score train/valid/test."""
+def fit_final_primary_models(model_df: pd.DataFrame, config: dict, shadow_outputs: dict) -> dict:
+    """Fit final primary models and score train/valid out-of-sample while keeping test final-fit."""
     train_df, valid_df, test_df = prepare_direction_frames(model_df)
     final_fit_df = pd.concat([train_df, valid_df], ignore_index=True)
-    scored_df = pd.concat([train_df, valid_df, test_df], ignore_index=True).sort_values(["pred_date", "symbol"]).reset_index(drop=True)
+    base_scored_df = (
+        pd.concat([train_df, valid_df, test_df], ignore_index=True)
+        .sort_values(["pred_date", "symbol"])
+        .reset_index(drop=True)
+    )
+    expected_split_counts = {"train": len(train_df), "valid": len(valid_df), "test": len(test_df)}
+    if expected_split_counts != {"train": 182495, "valid": 53909, "test": 58656}:
+        raise AssertionError(f"Unexpected split counts for final scoring: {expected_split_counts}")
 
-    direction_fit_x, direction_score_x = align_symbol_categories(
+    direction_fit_x, direction_test_x = align_symbol_categories(
         final_fit_df[DIRECTION_FEATURE_COLUMNS],
-        scored_df[DIRECTION_FEATURE_COLUMNS],
+        test_df[DIRECTION_FEATURE_COLUMNS],
     )
     logger.info(
         "Training final direction model | rows=%s | features=%s | categorical_features=1 | positive_target_fraction=%.4f | threshold=%.2f",
@@ -360,16 +376,16 @@ def fit_final_primary_models(model_df: pd.DataFrame, config: dict) -> dict:
         final_fit_df["actual_direction"].eq(1).astype("int8"),
         categorical_feature=["symbol"],
     )
-    raw_probability_up, pred_direction = score_direction_model(
+    test_probability_up, test_pred_direction = score_direction_model(
         final_direction_model,
-        direction_score_x,
+        direction_test_x,
         config["direction"]["threshold"],
     )
 
     magnitude_features = build_magnitude_feature_list(model_df)
-    magnitude_fit_x, magnitude_score_x = align_symbol_categories(
+    magnitude_fit_x, magnitude_test_x = align_symbol_categories(
         final_fit_df[magnitude_features],
-        scored_df[magnitude_features],
+        test_df[magnitude_features],
     )
     logger.info(
         "Training final magnitude model | rows=%s | features=%s | selected_tree_count=%s",
@@ -386,17 +402,44 @@ def fit_final_primary_models(model_df: pd.DataFrame, config: dict) -> dict:
         np.log1p(final_fit_df["actual_magnitude_pct"]),
         categorical_feature=["symbol"],
     )
-    pred_magnitude_pct = score_magnitude_model(final_magnitude_model, magnitude_score_x)
+    test_pred_magnitude_pct = score_magnitude_model(final_magnitude_model, magnitude_test_x)
 
-    scored_df = scored_df.copy()
-    scored_df["raw_probability_up"] = raw_probability_up
-    scored_df["pred_direction"] = pred_direction
-    scored_df["pred_magnitude_pct"] = pred_magnitude_pct
+    train_scored_df = shadow_outputs["train_df"].copy().reset_index(drop=True)
+    train_scored_df["raw_probability_up"] = shadow_outputs["shadow_train_direction_probability_up"]
+    train_scored_df["pred_direction"] = shadow_outputs["shadow_train_pred_direction"]
+    train_scored_df["pred_magnitude_pct"] = shadow_outputs["shadow_train_pred_magnitude_pct"]
+
+    valid_scored_df = shadow_outputs["valid_df"].copy().reset_index(drop=True)
+    valid_scored_df["raw_probability_up"] = shadow_outputs["shadow_direction_probability_up"]
+    valid_scored_df["pred_direction"] = shadow_outputs["shadow_pred_direction"]
+    valid_scored_df["pred_magnitude_pct"] = shadow_outputs["shadow_pred_magnitude_pct"]
+
+    test_scored_df = test_df.copy().reset_index(drop=True)
+    test_scored_df["raw_probability_up"] = test_probability_up
+    test_scored_df["pred_direction"] = test_pred_direction
+    test_scored_df["pred_magnitude_pct"] = test_pred_magnitude_pct
+
+    observed_splits = {train_scored_df["split"].iat[0], valid_scored_df["split"].iat[0], test_scored_df["split"].iat[0]}
+    if observed_splits != {"train", "valid", "test"}:
+        raise AssertionError(f"Expected train/valid/test scored splits, found {observed_splits}")
+
+    scored_df = (
+        pd.concat([train_scored_df, valid_scored_df, test_scored_df], ignore_index=True)
+        .sort_values(["pred_date", "symbol"])
+        .reset_index(drop=True)
+    )
+    if scored_df[["symbol", "pred_date"]].duplicated().any():
+        raise AssertionError("Duplicate symbol/pred_date rows found in final scored dataframe")
+    scored_counts = scored_df["split"].value_counts().to_dict()
+    if scored_counts != expected_split_counts:
+        raise AssertionError(f"Unexpected scored split counts: {scored_counts}")
+    if not scored_df[["symbol", "pred_date", "split"]].equals(base_scored_df[["symbol", "pred_date", "split"]]):
+        raise AssertionError("Concatenated scored predictions do not align with original scored rows")
     logger.info(
         "Primary model scoring summary | scored_rows=%s | predicted_up_fraction=%.6f | mean_pred_magnitude_pct=%.6f",
         format_count(len(scored_df)),
-        float(np.mean(pred_direction == 1)),
-        float(np.mean(pred_magnitude_pct)),
+        float(np.mean(scored_df["pred_direction"].to_numpy() == 1)),
+        float(np.mean(scored_df["pred_magnitude_pct"].to_numpy())),
     )
     return {
         "scored_df": scored_df,

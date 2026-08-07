@@ -1,0 +1,112 @@
+2026-08-06 18:24:03 | INFO | root | main | ============================================================
+2026-08-06 18:24:03 | INFO | root | main | ASTRA OVERNIGHT RETURN PIPELINE
+2026-08-06 18:24:03 | INFO | root | main | ============================================================
+2026-08-06 18:24:03 | INFO | root | main | Project root: /Users/kushagr/Desktop/astra-assignment
+2026-08-06 18:24:03 | INFO | root | main | Config: /Users/kushagr/Desktop/astra-assignment/code/config.yaml
+2026-08-06 18:24:03 | INFO | root | main | Python version: 3.13.7
+2026-08-06 18:24:03 | INFO | root | main | Seed: 42
+2026-08-06 18:24:03 | INFO | root | main | Cache enabled: True
+2026-08-06 18:24:03 | INFO | root | main | Cache rebuild: False
+2026-08-06 18:24:03 | INFO | root | main | Output directory: /Users/kushagr/Desktop/astra-assignment/final_outputs
+2026-08-06 18:24:03 | INFO | root | main | Log file: /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_182403.log
+2026-08-06 18:24:03 | INFO | root | main | ============================================================
+2026-08-06 18:24:03 | DEBUG | root | main | Package versions: {"lightgbm": "4.7.0", "numpy": "2.5.1", "pandas": "3.0.5", "pyarrow": "25.0.0", "python": "3.13.7", "scipy": "1.18.0", "sklearn": "1.9.0"}
+2026-08-06 18:24:03 | INFO | root | log_stage | Starting: Pipeline
+2026-08-06 18:24:03 | INFO | root | load_or_build_panel | Cache hit: /Users/kushagr/Desktop/astra-assignment/outputs/processed_data/model_features_with_splits_v1.parquet
+2026-08-06 18:24:03 | INFO | root | load_or_build_panel | Cached rows: 301,275 | cached target rows: 301,275
+2026-08-06 18:24:03 | INFO | root | load_or_build_panel | Cached panel validation passed
+2026-08-06 18:24:03 | INFO | root | log_stage | Starting: Validation benchmark reproduction
+2026-08-06 18:24:03 | INFO | root | run_validation_checks | Running validation benchmark reproduction
+2026-08-06 18:24:03 | INFO | root | run_validation_checks | Validation direction warm-up rows | train=182,495 | valid=53,909
+2026-08-06 18:24:03 | INFO | root | run_validation_checks | Training validation direction model | rows=182,495 | features=26 | categorical_features=1 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 18:24:03 | INFO | root | run_validation_checks | Validation direction parameters | {"bagging_fraction": 0.8, "bagging_freq": 1, "feature_fraction": 0.6, "learning_rate": 0.05, "min_child_samples": 100, "n_estimators": 1000, "n_jobs": -1, "num_leaves": 31, "objective": "binary", "random_state": 42, "verbosity": -1}
+2026-08-06 18:24:10 | INFO | root | run_validation_checks | Validation direction prediction summary | probability_mean=0.725173 | probability_std=0.152156 | probability_min=0.061273 | probability_max=0.993161 | predicted_up_fraction=0.768369 | hit_rate=0.650893
+2026-08-06 18:24:10 | INFO | root | run_validation_checks | Validation magnitude benchmark rows | train=186,555 | valid=54,009 | features=38
+2026-08-06 18:24:12 | INFO | root | run_validation_checks | Validation confidence benchmark rows | train=186,555 | valid=54,009
+2026-08-06 18:24:20 | INFO | src.models | run_shadow_workflow | Training shadow direction model | rows=182,495 | features=26 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 18:24:27 | INFO | src.models | run_shadow_workflow | Shadow direction validation correctness rate: 0.650893
+2026-08-06 18:24:27 | INFO | src.models | run_shadow_workflow | Training shadow magnitude model | rows=182,495 | features=46
+2026-08-06 18:24:29 | INFO | src.models | run_shadow_workflow | Shadow magnitude validation absolute-error summary | mean=0.466684 | median=0.306214 | max=33.783224
+2026-08-06 18:24:31 | INFO | root | log_benchmark_result | direction_score | observed=0.294817 | reference=0.294817 | delta=+0.000000 | tolerance=0.005000 | PASS
+2026-08-06 18:24:31 | INFO | root | log_benchmark_result | magnitude_score | observed=0.254340 | reference=0.254340 | delta=+0.000000 | tolerance=0.005000 | PASS
+2026-08-06 18:24:31 | INFO | root | log_benchmark_result | rank_ic | observed=0.245931 | reference=0.245931 | delta=-0.000000 | tolerance=0.010000 | PASS
+2026-08-06 18:24:31 | INFO | root | log_benchmark_result | conf_direction_score | observed=0.268893 | reference=0.268893 | delta=+0.000000 | tolerance=0.010000 | PASS
+2026-08-06 18:24:31 | INFO | root | log_benchmark_result | conf_magnitude_spearman | observed=0.301064 | reference=0.299122 | delta=+0.001942 | tolerance=0.020000 | PASS
+2026-08-06 18:24:31 | INFO | root | run_validation_checks | Magnitude best iteration | observed=84 | reference=84 | delta=0 | status=PASS
+2026-08-06 18:24:31 | INFO | root | log_stage | Completed: Validation benchmark reproduction | elapsed=27.86s
+2026-08-06 18:24:31 | INFO | root | log_stage | Starting: Shadow-model workflow
+2026-08-06 18:24:31 | INFO | src.models | run_shadow_workflow | Training shadow direction model | rows=182,495 | features=26 | positive_target_fraction=0.7316 | threshold=0.64
+2026-08-06 18:24:38 | INFO | src.models | run_shadow_workflow | Shadow direction validation correctness rate: 0.650893
+2026-08-06 18:24:38 | INFO | src.models | run_shadow_workflow | Training shadow magnitude model | rows=182,495 | features=46
+2026-08-06 18:24:39 | INFO | src.models | run_shadow_workflow | Shadow magnitude validation absolute-error summary | mean=0.466684 | median=0.306214 | max=33.783224
+2026-08-06 18:24:39 | INFO | root | log_stage | Completed: Shadow-model workflow | elapsed=8.16s
+2026-08-06 18:24:39 | INFO | root | log_stage | Starting: Final primary-model fitting and scoring
+2026-08-06 18:24:39 | INFO | src.models | fit_final_primary_models | Training final direction model | rows=236,404 | features=26 | categorical_features=1 | positive_target_fraction=0.7222 | threshold=0.64
+2026-08-06 18:24:49 | INFO | src.models | fit_final_primary_models | Training final magnitude model | rows=236,404 | features=46 | selected_tree_count=84
+2026-08-06 18:24:50 | INFO | src.models | fit_final_primary_models | Primary model scoring summary | scored_rows=295,060 | predicted_up_fraction=0.729509 | mean_pred_magnitude_pct=0.455374
+2026-08-06 18:24:50 | INFO | root | log_stage | Completed: Final primary-model fitting and scoring | elapsed=11.09s
+2026-08-06 18:24:50 | INFO | root | log_stage | Starting: Final confidence-model fitting and scoring
+2026-08-06 18:24:50 | INFO | src.models | fit_final_confidence_models | Direction confidence setup | correctness_rate=0.650893 | rows=53,909
+2026-08-06 18:24:50 | INFO | src.models | fit_final_confidence_models | Training direction confidence model | rows=53,909 | feature_count=15
+2026-08-06 18:24:51 | INFO | src.models | fit_final_confidence_models | Direction confidence output summary | mean=0.673336 | min=0.500001 | max=0.999992
+2026-08-06 18:24:51 | INFO | src.models | fit_final_confidence_models | Magnitude confidence setup | abs_error_mean=0.466684 | abs_error_median=0.306214 | abs_error_max=33.783224
+2026-08-06 18:24:51 | INFO | src.models | fit_final_confidence_models | Training magnitude confidence model | rows=53,909 | feature_count=16
+2026-08-06 18:24:54 | INFO | src.models | fit_final_confidence_models | Magnitude confidence output summary | expected_error_mean=0.329453 | expected_error_min=0.101996 | expected_error_max=8.383667 | conf_mean=0.566312 | conf_min=0.000000 | conf_max=1.000000
+2026-08-06 18:24:54 | INFO | root | log_stage | Completed: Final confidence-model fitting and scoring | elapsed=4.43s
+2026-08-06 18:24:55 | INFO | root | main | Scoring train | rows=182,495
+2026-08-06 18:24:55 | INFO | root | main | Scoring valid | rows=53,909
+2026-08-06 18:24:55 | INFO | root | main | Scoring test | rows=58,656
+2026-08-06 18:24:55 | INFO | root | main | Prediction summary | rows=295,060 | predicted_up_fraction=0.729509 | mean_pred_magnitude_pct=0.455374 | mean_conf_direction=0.673336 | mean_conf_magnitude=0.566312 | conf_direction_min=0.500001 | conf_direction_max=0.999992 | conf_magnitude_min=0.000000 | conf_magnitude_max=1.000000
+2026-08-06 18:24:55 | INFO | root | log_stage | Starting: Output dataframe construction
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Predictions/actuals key alignment: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Duplicate-row check: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Null/infinity check: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Direction-range check: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Confidence-range check: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Statistics completeness: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | validate_output_frames | Statistics rows: 123
+2026-08-06 18:24:56 | INFO | root | log_stage | Completed: Output dataframe construction | elapsed=1.25s
+2026-08-06 18:24:56 | INFO | root | log_stage | Starting: Writing output files
+2026-08-06 18:24:56 | INFO | src.evaluate | write_outputs | Writing predictions.csv
+2026-08-06 18:24:56 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/predictions.csv | Rows: 295,060 | Columns: 8 | Size: 22.8 MB | Schema validation: PASS
+2026-08-06 18:24:56 | INFO | src.evaluate | write_outputs | Writing actuals.csv
+2026-08-06 18:24:57 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/actuals.csv | Rows: 295,060 | Columns: 7 | Size: 24.9 MB | Schema validation: PASS
+2026-08-06 18:24:57 | INFO | src.evaluate | write_outputs | Writing statistics.csv
+2026-08-06 18:24:57 | INFO | src.evaluate | write_outputs | Path: /Users/kushagr/Desktop/astra-assignment/final_outputs/statistics.csv | Rows: 123 | Columns: 5 | Size: 6.3 KB | Schema validation: PASS
+2026-08-06 18:24:57 | INFO | root | log_stage | Completed: Writing output files | elapsed=1.31s
+2026-08-06 18:24:57 | INFO | root | main | Output rows | predictions=295,060 actuals=295,060 statistics=123
+2026-08-06 18:24:57 | INFO | root | main | Split rows | {'test': 58656, 'train': 182495, 'valid': 53909}
+2026-08-06 18:24:57 | INFO | root | main | Validation summary | {
+  "direction_score": 0.29481723269301396,
+  "magnitude_score": 0.25434045230546565,
+  "rank_ic": 0.2459309156425421,
+  "conf_direction_score": 0.26889305094737886,
+  "conf_magnitude_spearman": 0.3010642338036798,
+  "magnitude_best_iteration": 84
+}
+2026-08-06 18:24:57 | INFO | root | main | ============================================================
+2026-08-06 18:24:57 | INFO | root | main | PIPELINE COMPLETED SUCCESSFULLY
+2026-08-06 18:24:57 | INFO | root | main | ============================================================
+2026-08-06 18:24:57 | INFO | root | main | Total runtime: 54.50s
+2026-08-06 18:24:57 | INFO | root | main | Daily symbols: 208
+2026-08-06 18:24:57 | INFO | root | main | Minute symbols: 208
+2026-08-06 18:24:57 | INFO | root | main | Scored rows: 295,060
+2026-08-06 18:24:57 | INFO | root | main | Train rows: 182,495
+2026-08-06 18:24:57 | INFO | root | main | Validation rows: 53,909
+2026-08-06 18:24:57 | INFO | root | main | Test rows: 58,656
+2026-08-06 18:24:57 | INFO | root | main | Statistics rows: 123
+2026-08-06 18:24:57 | INFO | root | main | Validation:
+2026-08-06 18:24:57 | INFO | root | main | Direction score: 0.294817
+2026-08-06 18:24:57 | INFO | root | main | Magnitude score: 0.254340
+2026-08-06 18:24:57 | INFO | root | main | Rank IC: 0.245931
+2026-08-06 18:24:57 | INFO | root | main | Direction-confidence score: 0.268893
+2026-08-06 18:24:57 | INFO | root | main | Magnitude-confidence Spearman: 0.301064
+2026-08-06 18:24:57 | INFO | root | main | Magnitude best iteration: 84
+2026-08-06 18:24:57 | INFO | root | main | Outputs:
+2026-08-06 18:24:57 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/predictions.csv
+2026-08-06 18:24:57 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/actuals.csv
+2026-08-06 18:24:57 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/final_outputs/statistics.csv
+2026-08-06 18:24:57 | INFO | root | main | Log:
+2026-08-06 18:24:57 | INFO | root | main | /Users/kushagr/Desktop/astra-assignment/logs/pipeline_20260806_182403.log
+2026-08-06 18:24:57 | INFO | root | main | ============================================================
+2026-08-06 18:24:57 | INFO | root | log_stage | Completed: Pipeline | elapsed=54.50s
